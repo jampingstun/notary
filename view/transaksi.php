@@ -154,7 +154,7 @@
              <br/>
              <br/>
             <div class="form-actions">
-                <input type="submit" class="btn btn-primary" name="simpan" value="simpan"/>
+                <input type="submit" class="btn btn-primary" name="simpan" value="Simpan"/>
                     <a onclick="history.go(-1)" class="btn">Batal</a>
             </div>
             </div>

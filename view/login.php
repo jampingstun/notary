@@ -6,7 +6,7 @@
             <ul class="nav pull-left">
 <!--        menu kiri        -->
             </ul>
-                <p class="brand" style="margin-left: 35%; margin-bottom: 0;"> NOTARIS & PPAT </p> 
+                <p class="brand" style="margin: 0; margin-left: 31%; margin-top: 3px; padding: 0;"><img src="assets/img/header.png"/></p>
 
                 <ul class="nav pull-right">
 <!--          menu kanan          -->
@@ -22,7 +22,7 @@
   <div class="container">
       <div class="content">
           <div class="row">
-              <div class="span3 login" style="margin-left: 33%">
+              <div class="span3 login" style="margin-left: 35%">
                 <form id="login" method="post">
                     <div class="login-form">
                     <h2>Login</h2>

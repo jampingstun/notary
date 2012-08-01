@@ -1,4 +1,5 @@
 <html>
+    <head>
 <link rel="stylesheet" type="text/css" href="ext-2.2/resources/css/ext-all.css"/>
 <script type="text/javascript" src="ext-2.2/adapter/ext/ext-base.js"></script>
 <script type="text/javascript" src="ext-2.2/ext-all.js"></script>
@@ -26,8 +27,8 @@
     .search {
         background-image:url(ext-2.2/fam/application_go.png) !important;
     }
-
 </style>
+</head>
 <body>
 <!--   <div class="container">
     <div class="row">-->
