@@ -25,27 +25,28 @@ PemohonDataStore = new Ext.data.Store({
       },[ 
         {name: 'id_grouppemohon', type: 'int', mapping: 'id_grouppemohon'},
         {name: 'nm_grouppemohon', type: 'string', mapping: 'nm_grouppemohon'},
-        {name: 'pb_grouppemohon', type: 'int', mapping: 'pb_grouppemohon'}
+        {name: 'pb_grouppemohon', type: 'string', mapping: 'pb_grouppemohon'}
       ]),
       sortInfo:{field: 'id_grouppemohon', direction: "ASC"}
     });
+    
      PemohonDataStore.load();
     PemohonColumnModel = new Ext.grid.ColumnModel(
     [   Checkbox,
-        {
-        header: 'ID Group Pemohon',
-        readOnly: true,
-        dataIndex: 'id_grouppemohon', // this is where the mapped name is important!
-        width: 150,
-        hidden: false
-      },
+//        {
+//        header: 'ID Group Pemohon',
+//        readOnly: true,
+//        dataIndex: 'id_grouppemohon', // this is where the mapped name is important!
+//        width: 150,
+//        hidden: false
+//      },
       {
         header: 'Nama Group Pemohon',
         dataIndex: 'nm_grouppemohon',
         width: 150,
         hidden: false
       },{
-        header: 'PB Group Pemohon',
+        header: 'Status',
         dataIndex: 'pb_grouppemohon',
         width: 150,
         readOnly: true                     // we don't necessarily want to see this...

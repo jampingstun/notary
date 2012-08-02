@@ -33,7 +33,10 @@
         <div class="span9">
             <div class="well" style="background-color: white;">
                 <div class="page-header">
-                    <h3><b>Data Pemohon</b><br/><small>Data Identitas Pemohon</small></h3> 
+ <p class="brand" style="margin: 0; margin-left: 0%; margin-top: 25px; padding: 10;">
+<img src="assets/img/icon-add-user.png">&nbsp;&nbsp;<a style="padding-right: 12px;" class="label label-info">&nbsp;&nbsp;
+     Data Identitas Pemohon <br></a></p>
+                    
                 </div>
                 <br/>
       <div id="dok"></div>

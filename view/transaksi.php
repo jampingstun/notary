@@ -1,12 +1,14 @@
         <div class="span9">
             <div class="well" style="background-color: white;">
                 <div class="page-header">
-                    <h3>Form Data Transaksi <br/><small> Masukkan Data Identitas Transaksi</small></h3>
+<p class="brand" style="margin: 0; margin-left: 35%; margin-top: 25px; padding: 10;">
+<img src="assets/img/credit.png">&nbsp;&nbsp;<a style="padding-right: 12px;" class="label label-info" >&nbsp;&nbsp;
+     Form Data Transaksi <br></a></p>
                 </div>
-                <br/>
+                
         <form class="form-horizontal" method="POST" style="padding-right: 0%;">
                 <div class="page-header">
-                    <h3>Identitas Transaksi</h3>
+ <h3><a style="padding-right: 12px;" class="label label-info">Identitas Transaksi</a></h3>
                 </div>
             <div class="accordion" id="accordion1">
             <div class="accordion-group">
@@ -79,7 +81,7 @@
             </div>
                 
                 <div class="page-header">
-                    <h3>Data Transaksi</h3>
+<h3><a style="padding-right: 12px;" class="label label-info">Data Transaksi</a></h3>
                 </div>
             <div class="accordion" id="accordion2">
             <div class="accordion-group">

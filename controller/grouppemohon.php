@@ -105,6 +105,17 @@ else{
 			//$rec['tgldaftar']=codeDate($rec['tgldaftar']);
 			$arr[] = $rec;
 		}
+                
+                for($i=0;$i<count($arr);$i++){
+                  if($arr[$i][pb_grouppemohon]==1){
+                   $arr[$i][pb_grouppemohon] = 'aktif'; 
+               //    print_r($arr);
+                }
+                else{
+                    $arr[$i][pb_grouppemohon] = 'tidak aktif';
+                }
+                }
+                
 		$jsonresult = json_encode($arr);
 		echo '({"total":"'.$nbrows.'","results":'.$jsonresult.'})';
 	} else {

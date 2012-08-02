@@ -37,7 +37,10 @@
         <div class="span9">
             <div class="well" style="background-color: white;">
                 <div class="page-header">
-                    <h3><b>Data Transaksi</b><br/><small>Data Keterangan Transaksi</small></h3>
+<p class="brand" style="margin: 0; margin-left: 0%; margin-top: 25px; padding: 10;">
+<img src="assets/img/credit.png">&nbsp;&nbsp;<a style="padding-right: 12px;" class="label label-info">&nbsp;&nbsp;
+     Data Transaksi </a></p>
+                   
                 </div>
                 <br/>
       <div id="dok"></div>
