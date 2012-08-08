@@ -19,6 +19,13 @@
                 <div class="accordion-inner">
 
                     <div class="control-group">
+                    <label class="control-label">No KTP</label>
+                    <div class="controls">
+                    <input type="text" class="input-large" name="f[noktp]">
+                    </div>
+                    </div>
+                    
+                    <div class="control-group">
                     <label class="control-label">Nama</label>
                     <div class="controls">
                     <input type="text" class="input-large" name="f[nama]">

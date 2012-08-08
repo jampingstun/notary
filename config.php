@@ -7,6 +7,6 @@ $dbconfig = array(
 );
 
 $indexconfig = array(
-    'pemohon'=>array('nama','alamat','tempat','tglahir','agama','pekerjaan','notelp'),
+    'pemohon'=>array('noktp','nama','alamat','tempat','tglahir','agama','pekerjaan','notelp'),
 );
 ?>

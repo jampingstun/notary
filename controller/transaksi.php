@@ -1,12 +1,9 @@
 <?php
-////////////////////////////////////////////////////////
-// DATABASE.PHP
-////////////////////////////////////////////////////////
  error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
   mysql_connect("localhost", "root", "") or
   die("Could not connect: " . mysql_error());
   mysql_select_db("notaris");
-// Encodes a YYYY-MM-DD into a MM-DD-YYYY string
+
 if($_GET['op']==transaksi){   
     include 'view/wrapper.php'; 
     if ($_POST['simpan']) {
@@ -17,23 +14,85 @@ if($_GET['act'] == "get")
 {
 	$sql = "select * from transaksi where id_transaksi = '".$_GET["id_transaksi"]."'";	
 	$result = mysql_query($sql);	
-	$rows = mysql_num_rows($result);
+	$nbrows = mysql_num_rows($result);
 	$arr = array();
-	while($obj = mysql_fetch_object($result))  
-	{  
-		$arr[] = $obj;  
-	}
-		$jsonresult = json_encode($arr);
+	if($nbrows>0){
+		while($rec = mysql_fetch_assoc($result)){
+			$rec['tglmasuk']=codeDate($rec['tglmasuk']);
+                        $rec['tglselesai']=codeDate($rec['tglselesai']);
+			$arr = $rec;
+                        $a = $arr['id_grouptr'];
+                        $sqla = mysql_query("SELECT nm_grouptr FROM grouptransaksi WHERE id_grouptr='".$a."'");
+                        $nrows = mysql_num_rows($sqla);
+                        if($nrows>0){
+                            while($records = mysql_fetch_assoc($sqla)){
+                               $arrays = $records;
+                            }
+                        }
+                        unset($arr['id_grouptr']);
+                        if($arr['status'] == '1'){
+                           $arr['status'] = 'Selesai';
+                        }
+                        else{
+                            $arr['status'] = 'Belum Selesai';
+                        }
+                        
+                        if($arr['sudahbayar'] == '1'){
+                           $arr['sudahbayar'] = 'Sudah';
+                        }
+                        else{
+                            $arr['sudahbayar'] = 'Belum';
+                        }
+                        $sql = mysql_query('SELECT infopemohon FROM pemohon WHERE idpemohon = '.$arr['id_pemohon'].' ');
+                        $rows = mysql_num_rows($sql);
+                        if($rows>0){
+                           while($record = mysql_fetch_assoc($sql)){
+                               $array = $record;
+                           }
+                        }
+                        $info = json_decode($array['infopemohon'],true);
+                        $noktp['noktp'] = $info['noktp'];
+                        $data[] = array_merge($arr,$arrays,$noktp);
+		}
+		$jsonresult = json_encode($data);
 		echo '({"total":"'.$nbrows.'","results":'.$jsonresult.'})';
+	} else {
+		echo '({"total":"0", "results":""})';
+	}
 }
 
 else if($_GET['act'] == "edit")
 {
-
-
-	//move_uploaded_file ($_FILES['file_dokumentasi']['tmp_name'],"artikel/".$_FILES['file_dokumentasi']['name']);	
-	$sql = "update transaksi set tglmasuk = '".$_POST["tglmasuk"]."',id_pemohon = '".$_POST["id_pemohon"]."',id_grouptr ='".$_POST["id_grouptr"]."',
-            judul='".$_POST["judul"]."',jmlberkas='".$_POST["jmlberkas"]."', status='".$_POST["status"]."',jmlberkasselesai='".$_POST["jmlberkasselesai"]."',harga='".$_POST["harga"]."',sudahbayar='".$_POST["sudahbayar"]."',
+	$sql = mysql_query("SELECT id FROM tbl_index WHERE isi = '".$_POST['noktp']."'");
+        $nbrows = mysql_num_rows($sql);
+        if($nbrows > 0){
+            while($rec = mysql_fetch_array($sql)){
+                $idpemohon = $rec['id'];
+            }
+        }
+        $sql = mysql_query("SELECT id_grouptr FROM grouptransaksi WHERE nm_grouptr = '".$_POST['nm_grouptr']."'");
+        $nbrows = mysql_num_rows($sql);
+        if($nbrows > 0){
+            while($rec = mysql_fetch_array($sql)){
+                $idgrouptr = $rec['id_grouptr'];
+            }
+        }
+        $status = $_POST['status'];
+        $sudahbayar = $_POST['sudahbayar'];
+        if($status == 'Selesai'){
+            $status = 1;
+        }
+        else{
+            $status = 0;
+        }
+        if($sudahbayar == 'Sudah'){
+            $sudahbayar = 1;
+        }
+        else{
+            $sudahbayar = 0;
+        }
+        $sql = "update transaksi set tglmasuk = '".$_POST["tglmasuk"]."',id_pemohon = '".$idpemohon."',id_grouptr ='".$idgrouptr."',
+            judul='".$_POST["judul"]."',jmlberkas='".$_POST["jmlberkas"]."', status='".$status."',jmlberkasselesai='".$_POST["jmlberkasselesai"]."',harga='".$_POST["harga"]."',sudahbayar='".$sudahbayar."',
                 tglselesai='".$_POST["tglselesai"]."' where id_transaksi='".$_POST["id_transaksi"]."'";	
 	mysql_query($sql) or die(mysql_error());	
 	echo "{success:true}";
@@ -43,20 +102,38 @@ else if($_GET['act'] == "edit")
 else if($_GET['act'] == "add")
 
 {
-      //move_uploaded_file($_FILES['file_dokumentasi']['tmp_name'],"artikel/".$_FILES['file_dokumentasi']['name']);	 
      $f = $_POST['f'];
-     $stat = $_POST['status'];
-     $byr = $_POST['sudahbayar'];
-     if($stat==''){
-         $stat='0';
-     }
-     if($byr==''){
-         $byr='0';
-     }
+     $sql = mysql_query("SELECT id FROM tbl_index WHERE isi = '".$_POST['noktp']."'");
+        $nbrows = mysql_num_rows($sql);
+        if($nbrows > 0){
+            while($rec = mysql_fetch_array($sql)){
+                $idpemohon = $rec['id'];
+            }
+        }
+        $sql = mysql_query("SELECT id_grouptr FROM grouptransaksi WHERE nm_grouptr = '".$_POST['nm_grouptr']."'");
+        $nbrows = mysql_num_rows($sql);
+        if($nbrows > 0){
+            while($rec = mysql_fetch_array($sql)){
+                $idgrouptr = $rec['id_grouptr'];
+            }
+        }
+        $status = $_POST['status'];
+        $sudahbayar = $_POST['sudahbayar'];
+        if($status == 'Selesai'){
+            $status = 1;
+        }
+        else{
+            $status = 0;
+        }
+        if($sudahbayar == 'Sudah'){
+            $sudahbayar = 1;
+        }
+        else{
+            $sudahbayar = 0;
+        }
           
       $str="'".implode("','",$f)."'";
-	  //$sql_query = mysql_query("INSERT INTO transaksi(`id_transaksi`,`tglmasuk`,`id_pemohon`,`id_grouptr`,`judul`,`jmlberkas`,`status`,`jmlberkasselesai`,`harga`,`sudahbayar`,`tglselesai`) VALUES('null','".$_POST["tglmasuk"]."','".$_POST["id_pemohon"]."','".$_POST["id_grouptr"]."','".$_POST["judul"]."','".$_POST["jmlberkas"]."','".$_POST["status"]."','".$_POST["jmlberkasselesai"]."','".$_POST["harga"]."','".$_POST["sudahbayar"]."','".$_POST["tglselesai"]."')");
-            $sql_query = mysql_query("INSERT INTO transaksi(`id_transaksi`,`tglmasuk`,`id_pemohon`,`id_grouptr`,`judul`,`jmlberkas`,`jmlberkasselesai`,`harga`,`tglselesai`,`status`,`sudahbayar`) VALUES('null',".$str.",".$stat.",".$byr.")");
+            $sql_query = mysql_query("INSERT INTO transaksi(`id_transaksi`,`tglmasuk`,`judul`,`jmlberkas`,`jmlberkasselesai`,`harga`,`tglselesai`,`id_grouptr`,`id_pemohon`,`status`,`sudahbayar`) VALUES('null',".$str.",".$idgrouptr.",".$idpemohon.",".$status.",".$sudahbayar.")");
             if ($sql_query)
                     {
                     echo "{success:true}";
@@ -65,7 +142,6 @@ else if($_GET['act'] == "add")
                     {
                     echo "{success: false, errors: { reason: 'upload failed!!' }}";
                 }
-       $f['nm'] = $str;
                 
 }
 
@@ -94,7 +170,6 @@ $data2 = $_POST['data2'];
    $nbrows = mysql_num_rows($result);  
    if($nbrows>0){
     while($rec = mysql_fetch_array($result)){
-            // render the right date format  
       $arr[] = $rec;
     }
     $jsonresult = json_encode($arr);
@@ -106,21 +181,53 @@ $data2 = $_POST['data2'];
 
 else if($_GET['act'] == "show"){
     $query = "SELECT * FROM transaksi";
-	$result = mysql_query($query);
-	$nbrows = mysql_num_rows($result);	
+    $result = mysql_query($query);
+    $nbrows = mysql_num_rows($result);	
 	if($nbrows>0){
-		while($rec = mysql_fetch_array($result)){
-                        // render the right date format
-			$rec['tgldaftar']=codeDate($rec['tgldaftar']);
+		while($rec = mysql_fetch_assoc($result)){
+			$rec['tglmasuk']=codeDate($rec['tglmasuk']);
                         $rec['tglselesai']=codeDate($rec['tglselesai']);
-			$arr[] = $rec;
+			$arr = $rec;
+                        $a = $arr['id_grouptr'];
+                        $sqla = mysql_query("SELECT nm_grouptr FROM grouptransaksi WHERE id_grouptr='".$a."'");
+                        $nrows = mysql_num_rows($sqla);
+                        if($nrows>0){
+                            while($records = mysql_fetch_assoc($sqla)){
+                               $arrays = $records;
+                            }
+                        }
+                        unset($arr['id_grouptr']);
+                        if($arr['status'] == '1'){
+                           $arr['status'] = 'Selesai';
+                        }
+                        else{
+                            $arr['status'] = 'Belum Selesai';
+                        }
+                        
+                        if($arr['sudahbayar'] == '1'){
+                           $arr['sudahbayar'] = 'Sudah';
+                        }
+                        else{
+                            $arr['sudahbayar'] = 'Belum';
+                        }
+                        $sql = mysql_query('SELECT infopemohon FROM pemohon WHERE idpemohon = '.$arr['id_pemohon'].' ');
+                        $rows = mysql_num_rows($sql);
+                        if($rows>0){
+                           while($record = mysql_fetch_assoc($sql)){
+                               $array = $record;
+                           }
+                        }
+                        $info = json_decode($array['infopemohon'],true);
+                        $noktp['noktp'] = $info['noktp'];
+                        $data[] = array_merge($arr,$arrays,$noktp);
 		}
-		$jsonresult = json_encode($arr);
+		$jsonresult = json_encode($data);
 		echo '({"total":"'.$nbrows.'","results":'.$jsonresult.'})';
 	} else {
 		echo '({"total":"0", "results":""})';
 	}
 }
+
 function codeDate ($date) {
 	$tab = explode ("-", $date);
 	$r = $tab[1]."-".$tab[2]."-".$tab[0];
