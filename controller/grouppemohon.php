@@ -45,11 +45,17 @@ else if($_GET['act'] == "add")
 
 {
       //move_uploaded_file($_FILES['file_dokumentasi']['tmp_name'],"artikel/".$_FILES['file_dokumentasi']['name']);	 
-    $f = $_POST['f']; 
-    $str="'".implode("','",$f)."'";
+    $f = $_POST['f'];
+    $info = json_encode($f);
+    ?>
+    
+    <script>
+        alert('<?echo $f;?>');
+    </script>
+    <?
     //echo $str;
     //$sql_query = mysql_query("INSERT INTO grouppemohon(`id_grouppemohon`,`nm_grouppemohon`,`pb_grouppemohon`) VALUES('null','".$_POST["nm_grouppemohon"]."','".$_POST["pb_grouppemohon"]."')");
-    $sql=mysql_query("insert into grouppemohon(`id_grouppemohon`,`nm_grouppemohon`,`pb_grouppemohon`) values('null',".$str.")");
+    $sql=mysql_query("insert into grouppemohon(id_grouppemohon,nm_grouppemohon,pb_grouppemohon,infogrouppemohon) values(NULL,'".$f['nm_grouppemohon']."','".$f['pb_grouppemohon']."','".$info."'");
     //echo "{$sql}";
     if ($sql)
                     {
@@ -105,6 +111,17 @@ else{
 			//$rec['tgldaftar']=codeDate($rec['tgldaftar']);
 			$arr[] = $rec;
 		}
+                
+                for($i=0;$i<count($arr);$i++){
+                  if($arr[$i][pb_grouppemohon]==1){
+                   $arr[$i][pb_grouppemohon] = 'aktif'; 
+               //    print_r($arr);
+                }
+                else{
+                    $arr[$i][pb_grouppemohon] = 'tidak aktif';
+                }
+                }
+                
 		$jsonresult = json_encode($arr);
 		echo '({"total":"'.$nbrows.'","results":'.$jsonresult.'})';
 	} else {

@@ -22,30 +22,31 @@ PemohonDataStore = new Ext.data.Store({
         root: 'results',
         totalProperty: 'total',
         id: 'id'
-      },[ 
+      },[
         {name: 'id_grouppemohon', type: 'int', mapping: 'id_grouppemohon'},
         {name: 'nm_grouppemohon', type: 'string', mapping: 'nm_grouppemohon'},
-        {name: 'pb_grouppemohon', type: 'int', mapping: 'pb_grouppemohon'}
+        {name: 'pb_grouppemohon', type: 'string', mapping: 'pb_grouppemohon'}
       ]),
       sortInfo:{field: 'id_grouppemohon', direction: "ASC"}
     });
+    
      PemohonDataStore.load();
     PemohonColumnModel = new Ext.grid.ColumnModel(
     [   Checkbox,
-        {
-        header: 'ID Group Pemohon',
-        readOnly: true,
-        dataIndex: 'id_grouppemohon', // this is where the mapped name is important!
-        width: 150,
-        hidden: false
-      },
+//        {
+//        header: 'ID Group Pemohon',
+//        readOnly: true,
+//        dataIndex: 'id_grouppemohon', // this is where the mapped name is important!
+//        width: 150,
+//        hidden: false
+//      },
       {
         header: 'Nama Group Pemohon',
         dataIndex: 'nm_grouppemohon',
         width: 150,
         hidden: false
       },{
-        header: 'PB Group Pemohon',
+        header: 'Status',
         dataIndex: 'pb_grouppemohon',
         width: 150,
         readOnly: true                     // we don't necessarily want to see this...
@@ -76,24 +77,49 @@ PemohonDataStore = new Ext.data.Store({
         defaults: {allowBlank: false},
 		
         items: [
-		{
-            xtype: 'textfield',
-            fieldLabel: 'ID Group Pemohon',
-			anchor: '80%',
-			name: 'id_grouppemohon'
-        },
-       	{
+       {
             xtype: 'textfield',
             fieldLabel: 'Nama Group Pemohon',			
 			anchor: '80%',
 			name: 'f[nm_grouppemohon]'
 			
         },
-	{
+        {
             xtype: 'textfield',
-            fieldLabel: 'PB Group Pemohon',			
+            fieldLabel: 'Nama Perusahaan',			
 			anchor: '80%',
-			name: 'f[pb_grouppemohon]'
+			name: 'f[perusahann_grouppemohon]'
+			
+        },
+        {
+            xtype: 'textfield',
+            fieldLabel: 'Alamat Perusahaan',			
+			anchor: '80%',
+			name: 'f[alamat_grouppemohon]'
+        },
+        {
+            xtype: 'textfield',
+            fieldLabel: 'Telp.',			
+			anchor: '80%',
+			name: 'f[telp_grouppemohon]'
+        },
+        {
+            xtype: 'combo',
+            fieldLabel: 'Status',
+            name: 'f[pb_grouppemohon]',
+            anchor: '80%',
+            store: new Ext.data.SimpleStore({
+                    data: [
+                            [1, 'Aktif'],
+                            [0, 'Tidak Aktif']
+                    ],
+                    fields: ['value', 'text']
+            }),
+            mode: 'local',
+            valueField: 'value',
+            displayField: 'text',
+            triggerAction: 'all',
+            editable: false
         }	
 		],
         buttons: [{
