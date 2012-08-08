@@ -5,9 +5,9 @@
  error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
   mysql_connect("localhost", "root", "") or
   die("Could not connect: " . mysql_error());
-  mysql_select_db("notaris");
-if($_GET['op']==pemohon){   
-    include 'view/wrapper.php';
+  mysql_select_db("notaris"); 
+if($_GET['op']==pemohon){  
+    include 'view/wrapper.php';   
     if ($_POST['simpan']) {
         $_GET['act']='add';
     }
@@ -150,9 +150,21 @@ else if($_GET['act'] == "show"){
 		echo '({"total":"0", "results":""})';
 	}
 }
+
+function datagroup() {
+    $gp = array();
+    $sql = 'SELECT * FROM grouppemohon';
+    $result = mysql_query($sql) or die (mysql_error());
+    $i= 0;
+    while($r=mysql_fetch_array($result)) {
+        $gp[$i] = $r['nm_grouppemohon'];
+        $i++;
+    } 
+    return $gp;
+}
+
 function codeDate ($date) {
 	$tab = explode ("-", $date);
 	$r = $tab[1]."/".$tab[2]."/".$tab[0];
 	return $r;
 }
-?>

@@ -8,7 +8,7 @@ var Checkbox = new Ext.grid.CheckboxSelectionModel();
 PemohonDataStore = new Ext.data.Store({
       id: 'PemohonDataStore',
       proxy: new Ext.data.HttpProxy({
-                url: 'controller/grouppemohon.php',      // File to connect to
+                url: 'controller/grouppemohon.php?act=show',      // File to connect to
                 method: 'POST'
             }),
             baseParams:

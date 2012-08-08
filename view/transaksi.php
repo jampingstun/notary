@@ -53,11 +53,12 @@
                     <label class="control-label" for="select01">Group Transaksi</label>
                     <div class="controls">
                     <select name="f[id_grouptr]">
-                        <option>something</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <?php
+                        $group = datagroup();
+                        foreach($group as $v) {
+                            echo '<option>'.$v.'</option>';
+                        }
+                        ?>
                     </select>
                     </div>
                 </div>
