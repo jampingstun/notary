@@ -32,7 +32,10 @@
         <div class="span9">
             <div class="well" style="background-color: white;">
                 <div class="page-header">
-                    <h3><b>Data Group Pemohon</b><br/><small>Data Identitas Group Pemohon</small></h3>
+<p class="brand" style="margin: 0; margin-left: 0%; margin-top: 25px; padding: 10;">
+<img src="assets/img/group.png">&nbsp;&nbsp;<a style="padding-right: 12px;" class="label label-info">&nbsp;&nbsp;
+     Data Identitas Group Pemohon </a></p>
+<!--                 <small>Data Identitas Group Pemohon</small>-->
                 </div>
                 <br/>
       <div id="dok"></div>

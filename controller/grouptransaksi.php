@@ -93,7 +93,7 @@ else if((isset($_POST['act'])) == "cari")
    }
 }
 
-else{
+else if ($_GET['act'] == 'show') {
     $query = "SELECT * FROM grouptransaksi";
 	$result = mysql_query($query);
 	$nbrows = mysql_num_rows($result);	
