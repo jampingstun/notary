@@ -125,9 +125,9 @@ PemohonDataStore = new Ext.data.Store({
         buttons: [{
             text: 'Save',
             handler: function(){
-              
+                    //      window.location='http://localhost/notproj/controller/grouppemohon.php?act=add';
 			  tambah.getForm().submit({
-	                               
+	                              
 				success: function(tambah, o)
 				{ 							 
 					PemohonDataStore.reload();
@@ -136,7 +136,8 @@ PemohonDataStore = new Ext.data.Store({
 						
 				failure: function(tambah, o)
 				{							 
-					Ext.MessageBox.alert('Warning','Failur');    
+					//Ext.MessageBox.alert('Warning', 'action.result.msg');
+                                        alert(response());
 				}     
 	            });
                 

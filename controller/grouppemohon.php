@@ -47,11 +47,10 @@ else if($_GET['act'] == "add")
       //move_uploaded_file($_FILES['file_dokumentasi']['tmp_name'],"artikel/".$_FILES['file_dokumentasi']['name']);	 
     $f = $_POST['f'];
     $info = json_encode($f);
+  // echo 'one';
+  //  die('resop');
     ?>
     
-    <script>
-        alert('<?echo $f;?>');
-    </script>
     <?
     //echo $str;
     //$sql_query = mysql_query("INSERT INTO grouppemohon(`id_grouppemohon`,`nm_grouppemohon`,`pb_grouppemohon`) VALUES('null','".$_POST["nm_grouppemohon"]."','".$_POST["pb_grouppemohon"]."')");
