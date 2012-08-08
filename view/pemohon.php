@@ -1,18 +1,21 @@
         <div class="span9">
             <div class="well" style="background-color: white;">
-                <div class="page-header">
-                    <h3>Form Data Pemohon <br/><small> Masukkan Data Identitas Pemohon</small></h3>
+                <div class="page-header"> 
+<p class="brand" style="margin: 0; margin-left: 35%; margin-top: 25px; padding: 10;">
+<img src="assets/img/icon-add-user.png">&nbsp;&nbsp;<a style="padding-right: 12px;" class="label label-info">&nbsp;&nbsp;
+     Form Data Pemohon <br></a></p>
+<!--    <a style="padding-right:25px;"> Masukkan Data Identitas Pemohon</a>-->
                 </div>
                 <br/>
         <form class="form-horizontal" method="POST" style="padding-right: 0%;">
-                <div class="page-header">
+<!--                <div class="page-header">
                     <h3>Identitas Pemohon</h3>
-                </div>
+                </div>-->
             <div class="accordion" id="accordion1">
             <div class="accordion-group">
               <div class="accordion-heading">
                 <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1" href="#collapse1" style="background-color:whitesmoke;">
-                  Masukkan Data
+                  Masukkan Data Identitas Pemohon
                 </a>
               </div>
               <div id="collapse1" class="accordion-body collapse in">
@@ -94,11 +97,12 @@
                     <label class="control-label" for="select01">Group Pemohon</label>
                     <div class="controls">
                     <select name="f[grouppemohon]">
-                        <option>something</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                        <?php
+                        $group = datagroup();
+                        foreach($group as $v) {
+                            echo '<option>'.$v.'</option>';
+                        }
+                        ?>
                     </select>
                     </div>
                 </div>

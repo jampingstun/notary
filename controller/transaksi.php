@@ -228,6 +228,18 @@ else if($_GET['act'] == "show"){
 	}
 }
 
+function datagroup() {
+    $gp = array();
+    $sql = 'SELECT * FROM grouptransaksi';
+    $result = mysql_query($sql) or die (mysql_error());
+    $i= 0;
+    while($r=mysql_fetch_array($result)) {
+        $gp[$i] = $r['nm_grouptr'];
+        $i++;
+    } 
+    return $gp;
+}
+
 function codeDate ($date) {
 	$tab = explode ("-", $date);
 	$r = $tab[1]."-".$tab[2]."-".$tab[0];
