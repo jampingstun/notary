@@ -39,14 +39,22 @@
                         
                     <label class="control-label" for="select01">No KTP</label>
                     <div class="controls">
-                    <select name="noktp">
-                        <<?php
+                    <select name="noktp" id="noktp" class="combobox">
+                        <option></option>
+                        <?php
                         $group = datanoktp();
                         foreach($group as $v) {
                             echo '<option>'.$v.'</option>';
                         }
                         ?>
                     </select>
+             	<script type="text/javascript">
+      //<![CDATA[
+        $(document).ready(function(){
+          $('.combobox').combobox()
+        });
+      //]]>
+    </script>
                     </div>
                 </div>
                     

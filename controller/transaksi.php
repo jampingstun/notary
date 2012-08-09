@@ -24,6 +24,7 @@ if($_GET['act'] == "get")
                         $a = $arr['id_grouptr'];
                         $sqla = mysql_query("SELECT nm_grouptr FROM grouptransaksi WHERE id_grouptr='".$a."'");
                         $nrows = mysql_num_rows($sqla);
+                        $arrays = array();
                         if($nrows>0){
                             while($records = mysql_fetch_assoc($sqla)){
                                $arrays = $records;
@@ -191,6 +192,7 @@ else if($_GET['act'] == "show"){
                         $a = $arr['id_grouptr'];
                         $sqla = mysql_query("SELECT nm_grouptr FROM grouptransaksi WHERE id_grouptr='".$a."'");
                         $nrows = mysql_num_rows($sqla);
+                        $arrays = array();
                         if($nrows>0){
                             while($records = mysql_fetch_assoc($sqla)){
                                $arrays = $records;

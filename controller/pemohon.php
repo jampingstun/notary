@@ -188,6 +188,7 @@ else if($_GET['act'] == "show"){
                         $a = $arr['idgrouppemohon'];
                         $sqla = mysql_query("SELECT nm_grouppemohon FROM grouppemohon WHERE id_grouppemohon='".$a."'");
                         $rows = mysql_num_rows($sqla);
+                        $array = array();
                         if($rows>0){
                             while($record = mysql_fetch_array($sqla)){
                                $array = $record;

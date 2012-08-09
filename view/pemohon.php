@@ -87,7 +87,8 @@
                      <script>
                       function datet(){
                          $('#dp3').datepicker();
-                         //$('#dp3').datepicker('show');                          
+                         //$('#dp3').datepicker('show');    
+                         $('.combobox').combobox();
                       }
                     </script>
                     </div>
@@ -96,7 +97,7 @@
                     <div class="control-group">
                     <label class="control-label" for="select01">Group Pemohon</label>
                     <div class="controls">
-                    <select name="f[grouppemohon]">
+                    <select name="grouppemohon">
                         <?php
                         $group = datagroup();
                         foreach($group as $v) {
