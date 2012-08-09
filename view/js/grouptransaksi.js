@@ -25,20 +25,13 @@ PemohonDataStore = new Ext.data.Store({
       },[ 
         {name: 'id_grouptr', type: 'int', mapping: 'id_grouptr'},
         {name: 'nm_grouptr', type: 'string', mapping: 'nm_grouptr'},
-        {name: 'pb_grouptr', type: 'int', mapping: 'pb_grouptr'}
+        {name: 'pb_grouptr', type: 'string', mapping: 'pb_grouptr'}
       ]),
       sortInfo:{field: 'id_grouptr', direction: "ASC"}
     });
      PemohonDataStore.load();
     PemohonColumnModel = new Ext.grid.ColumnModel(
     [   Checkbox,
-        {
-        header: 'ID Group Transaksi',
-        readOnly: true,
-        dataIndex: 'id_grouptr', // this is where the mapped name is important!
-        width: 150,
-        hidden: false
-      },
       {
         header: 'Nama Group Transaksi',
         dataIndex: 'nm_grouptr',

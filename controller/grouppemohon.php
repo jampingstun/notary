@@ -101,15 +101,12 @@ else if ($_GET['act'] == 'show') {
 	$nbrows = mysql_num_rows($result);	
 	if($nbrows>0){
 		while($rec = mysql_fetch_array($result)){
-                        // render the right date format
-			//$rec['tgldaftar']=codeDate($rec['tgldaftar']);
 			$arr[] = $rec;
 		}
                 
                 for($i=0;$i<count($arr);$i++){
-                  if($arr[$i][pb_grouppemohon]==1){
+                if($arr[$i][pb_grouppemohon]==1){
                    $arr[$i][pb_grouppemohon] = 'aktif'; 
-               //    print_r($arr);
                 }
                 else{
                     $arr[$i][pb_grouppemohon] = 'tidak aktif';
