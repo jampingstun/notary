@@ -25,20 +25,13 @@ PemohonDataStore = new Ext.data.Store({
       },[ 
         {name: 'id_grouptr', type: 'int', mapping: 'id_grouptr'},
         {name: 'nm_grouptr', type: 'string', mapping: 'nm_grouptr'},
-        {name: 'pb_grouptr', type: 'int', mapping: 'pb_grouptr'}
+        {name: 'pb_grouptr', type: 'string', mapping: 'pb_grouptr'}
       ]),
       sortInfo:{field: 'id_grouptr', direction: "ASC"}
     });
      PemohonDataStore.load();
     PemohonColumnModel = new Ext.grid.ColumnModel(
     [   Checkbox,
-        {
-        header: 'ID Group Transaksi',
-        readOnly: true,
-        dataIndex: 'id_grouptr', // this is where the mapped name is important!
-        width: 150,
-        hidden: false
-      },
       {
         header: 'Nama Group Transaksi',
         dataIndex: 'nm_grouptr',
@@ -52,11 +45,6 @@ PemohonDataStore = new Ext.data.Store({
       }]
     );
     PemohonColumnModel.defaultSortable= true;
- 
-  //// Load the data
-    // Display our window
- 
-//});
 
 //==================================================//
 	//                             FORM TAMBAH DATA                               //
@@ -73,24 +61,12 @@ PemohonDataStore = new Ext.data.Store({
         defaults: {allowBlank: false},
 		
         items: [
-		{
-            xtype: 'textfield',
-            fieldLabel: 'ID Group Transaksi',
-			anchor: '80%',
-			name: 'id_grouptr'
-        },
        	{
             xtype: 'textfield',
             fieldLabel: 'Nama Group Transaksi',			
 			anchor: '80%',
 			name: 'f[nm_grouptr]'
 			
-        },
-	{
-            xtype: 'textfield',
-            fieldLabel: 'PB Group Transaksi',			
-			anchor: '80%',
-			name: 'f[pb_grouptr]'
         }	
 		],
         buttons: [{
@@ -127,7 +103,7 @@ PemohonDataStore = new Ext.data.Store({
 	    closable:true,
             closeAction:'hide',	 
 	    width:500,
-	    height:400,       
+	    height:120,       
             layout: 'fit',		       
 		    
 		listeners : {
@@ -176,15 +152,8 @@ PemohonDataStore = new Ext.data.Store({
 		[
 		new Ext.form.Hidden 
 		({
-			//name: 'id_transaksi'					
+                    name: 'id_grouptr'
 		}),
-		{
-            xtype: 'textfield',
-            fieldLabel: 'ID Group Transaksi',
-			anchor: '80%',
-                        readOnly: true,
-			name: 'id_grouptr'
-        },
 		
 	{
             xtype: 'textfield',
@@ -195,11 +164,17 @@ PemohonDataStore = new Ext.data.Store({
 			
         },
 	{
-            xtype: 'textfield',
-            fieldLabel: 'PB Group Transaksi',			
-			anchor: '80%',
-			name: 'pb_grouptr',
-                        id: 'pb_grouptr'
+            xtype: 'combo',
+            fieldLabel: 'Status Group',			
+            anchor: '80%',
+            store: ['aktif','tidak aktif'],
+            displayField: 'pb_grouptr',
+            typeAhead: true,
+            mode: 'local',
+            triggerAction: 'all',
+            forceSelection: true,
+            selectOnFocus:true,
+            name: 'pb_grouptr'
         }			
 		],
 		
@@ -240,8 +215,8 @@ PemohonDataStore = new Ext.data.Store({
             title: 'Edit Input',
             closable:true,
             closeAction:'hide',	 
-	    width:500,
-	    height:500,       
+	    width:400,
+	    height:200,       
             layout: 'fit',		
             modal: true,		
         items: [

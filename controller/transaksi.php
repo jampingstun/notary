@@ -240,6 +240,20 @@ function datagroup() {
     return $gp;
 }
 
+function datanoktp() {
+    $gp = array();
+    $sql = 'SELECT * FROM pemohon';
+    $result = mysql_query($sql) or die (mysql_error());
+    $i= 0;
+    while($r=mysql_fetch_assoc($result)) {
+        $arr = $r['infopemohon'];
+        $noktp = json_decode($arr,true);
+        $gp[$i] = $noktp['noktp'];
+        $i++;
+    } 
+    return $gp;
+}
+
 function codeDate ($date) {
 	$tab = explode ("-", $date);
 	$r = $tab[1]."-".$tab[2]."-".$tab[0];

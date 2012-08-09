@@ -19,23 +19,32 @@ if($_GET['act'] == "get")
 	$result = mysql_query($sql);	
 	$rows = mysql_num_rows($result);
 	$arr = array();
-	while($obj = mysql_fetch_object($result))  
+	while($obj = mysql_fetch_assoc($result))  
 	{  
 		$arr[] = $obj;  
 	}
+        for($i=0;$i<count($arr);$i++){
+                if($arr[$i][pb_grouppemohon]==1){
+                   $arr[$i][pb_grouppemohon] = 'aktif'; 
+                }
+                else{
+                    $arr[$i][pb_grouppemohon] = 'tidak aktif';
+                }
+                }
 		$jsonresult = json_encode($arr);
 		echo '({"total":"'.$rows.'","results":'.$jsonresult.'})';
 }
 
 else if($_GET['act'] == "edit")
 {
-
-//        $f = $_POST['f']; 
-//        $str="'".implode("','",$f)."'";
-	//move_uploaded_file ($_FILES['file_dokumentasi']['tmp_name'],"artikel/".$_FILES['file_dokumentasi']['name']);	
-	$sql = "update grouppemohon set nm_grouppemohon = '".$_POST["nm_grouppemohon"]."',pb_grouppemohon ='".$_POST["pb_grouppemohon"]."'where id_grouppemohon='".$_POST["id_grouppemohon"]."'";	
-//	mysql_query("delete from grouppemohon where id_grouppemohon='".$_POST["id_grouppemohon"]."'");
-//        $sql = "insert into grouppemohon(`id_grouppemohon`,`nm_grouppemohon`,`pb_grouppemohon`) values('null',".$str.")";
+        $pbgroup = $_POST['pb_grouppemohon'];
+        if($pbgroup == 'aktif'){
+            $pbgroup = '1';
+        }
+        else{
+            $pbgroup = '0';
+        }
+	$sql = "update grouppemohon set nm_grouppemohon = '".$_POST["nm_grouppemohon"]."',pb_grouppemohon ='".$pbgroup."'where id_grouppemohon='".$_POST["id_grouppemohon"]."'";
         mysql_query($sql) or die(mysql_error());	
 	echo "{success:true}";
 
@@ -106,15 +115,12 @@ else if ($_GET['act'] == 'show') {
 	$nbrows = mysql_num_rows($result);	
 	if($nbrows>0){
 		while($rec = mysql_fetch_array($result)){
-                        // render the right date format
-			//$rec['tgldaftar']=codeDate($rec['tgldaftar']);
 			$arr[] = $rec;
 		}
                 
                 for($i=0;$i<count($arr);$i++){
-                  if($arr[$i][pb_grouppemohon]==1){
+                if($arr[$i][pb_grouppemohon]==1){
                    $arr[$i][pb_grouppemohon] = 'aktif'; 
-               //    print_r($arr);
                 }
                 else{
                     $arr[$i][pb_grouppemohon] = 'tidak aktif';

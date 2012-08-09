@@ -37,14 +37,15 @@
                     </div>
                     </div>
                         
-                    <label class="control-label" for="select01">ID Pemohon</label>
+                    <label class="control-label" for="select01">No KTP</label>
                     <div class="controls">
-                    <select name="f[id_pemohon]">
-                        <option>something</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
+                    <select name="noktp">
+                        <<?php
+                        $group = datanoktp();
+                        foreach($group as $v) {
+                            echo '<option>'.$v.'</option>';
+                        }
+                        ?>
                     </select>
                     </div>
                 </div>
@@ -52,7 +53,7 @@
                     <div class="control-group">
                     <label class="control-label" for="select01">Group Transaksi</label>
                     <div class="controls">
-                    <select name="f[id_grouptr]">
+                    <select name="nm_grouptr">
                         <?php
                         $group = datagroup();
                         foreach($group as $v) {
@@ -105,7 +106,7 @@
                     <label class="control-label">Status</label>
                     <div class="controls">
                      <label class="checkbox">
-                     <input type="checkbox" name="status" value="1"> Selesai
+                     <input type="checkbox" name="status" value="Selesai"> Selesai
                      </label>
                     </div>
                     </div>
@@ -128,7 +129,7 @@
                     <label class="control-label">Status</label>
                     <div class="controls">
                      <label class="checkbox">
-                     <input type="checkbox" name="sudahbayar" value="1"> Sudah Bayar
+                     <input type="checkbox" name="sudahbayar" value="Sudah"> Sudah Bayar
                      </label>
                     </div>
                     </div>
