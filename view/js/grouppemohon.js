@@ -88,7 +88,7 @@ PemohonDataStore = new Ext.data.Store({
             xtype: 'textfield',
             fieldLabel: 'Nama Perusahaan',			
 			anchor: '80%',
-			name: 'f[perusahann_grouppemohon]'
+			name: 'f[perusahaan_grouppemohon]'
 			
         },
         {
@@ -126,19 +126,22 @@ PemohonDataStore = new Ext.data.Store({
             text: 'Save',
             handler: function(){
                     //      window.location='http://localhost/notproj/controller/grouppemohon.php?act=add';
-			  tambah.getForm().submit({
+			  tambah.getForm().submit({ 
 	                              
 				success: function(tambah, o)
-				{ 							 
+				{ 				
+                                  //  alert(o.response.responseText);
 					PemohonDataStore.reload();
 					TambahForm.hide();	
 				},
 						
 				failure: function(tambah, o)
-				{							 
-					//Ext.MessageBox.alert('Warning', 'action.result.msg');
-                                        alert(response());
-				}     
+				{			
+                                    alert(o.response.responseText);
+                                      //  alert(o.response.responseText);
+				}
+                             
+                                
 	            });
                 
             }

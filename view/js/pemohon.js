@@ -231,8 +231,6 @@ PemohonDataStore = new Ext.data.Store({
             store: ['Aktif', 'Tidak Aktif'] 
         }
 		
-		
-			
 		],
         buttons: [{
             text: 'Save',
