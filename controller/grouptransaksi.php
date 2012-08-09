@@ -1,12 +1,8 @@
 <?php
-////////////////////////////////////////////////////////
-// DATABASE.PHP
-////////////////////////////////////////////////////////
  error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
   mysql_connect("localhost", "root", "") or
   die("Could not connect: " . mysql_error());
   mysql_select_db("notaris");
-// Encodes a YYYY-MM-DD into a MM-DD-YYYY string
 if($_GET['op']==grouptransaksi){   
     include 'view/wrapper.php';
     if ($_POST['simpan']) {
@@ -37,8 +33,14 @@ if($_GET['act'] == "get")
 
 else if($_GET['act'] == "edit")
 {
-
-	$sql = "update grouptransaksi set nm_grouptr = '".$_POST["nm_grouptr"]."',pb_grouptr ='".$_POST["pb_grouptr"]."'where id_grouptr='".$_POST["id_grouptr"]."'";
+        $pbgroup = $_POST['pb_grouptr'];
+        if($pbgroup == 'aktif'){
+            $pbgroup = '1';
+        }
+        else{
+            $pbgroup = '0';
+        }
+	$sql = "update grouptransaksi set nm_grouptr = '".$_POST["nm_grouptr"]."',pb_grouptr ='".$pbgroup."'where id_grouptr='".$_POST["id_grouptr"]."'";
         mysql_query($sql) or die(mysql_error());	
 	echo "{success:true}";
 
@@ -47,11 +49,9 @@ else if($_GET['act'] == "edit")
 else if($_GET['act'] == "add")
 
 {
-      //move_uploaded_file($_FILES['file_dokumentasi']['tmp_name'],"artikel/".$_FILES['file_dokumentasi']['name']);	 
           $f = $_POST['f'];
           $str="'".implode("','",$f)."'";
-	  //$sql_query = mysql_query("INSERT INTO grouptransaksi(`id_grouptr`,`nm_grouptr`,`pb_grouptr`) VALUES('null','".$_POST["nm_grouptr"]."','".$_POST["pb_grouptr"]."')");
-          $sql=mysql_query("insert into grouptransaksi(`id_grouptr`,`nm_grouptr`,`pb_grouptr`) values('null',".$str.")");
+          $sql=mysql_query("insert into grouptransaksi(`id_grouptr`,`nm_grouptr`,`pb_grouptr`) values('null',".$str.",'1')");
           if ($sql)
                     {
                     echo "{success:true}";

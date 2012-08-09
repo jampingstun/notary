@@ -45,11 +45,6 @@ PemohonDataStore = new Ext.data.Store({
       }]
     );
     PemohonColumnModel.defaultSortable= true;
- 
-  //// Load the data
-    // Display our window
- 
-//});
 
 //==================================================//
 	//                             FORM TAMBAH DATA                               //
@@ -66,24 +61,12 @@ PemohonDataStore = new Ext.data.Store({
         defaults: {allowBlank: false},
 		
         items: [
-		{
-            xtype: 'textfield',
-            fieldLabel: 'ID Group Transaksi',
-			anchor: '80%',
-			name: 'id_grouptr'
-        },
        	{
             xtype: 'textfield',
             fieldLabel: 'Nama Group Transaksi',			
 			anchor: '80%',
 			name: 'f[nm_grouptr]'
 			
-        },
-	{
-            xtype: 'textfield',
-            fieldLabel: 'PB Group Transaksi',			
-			anchor: '80%',
-			name: 'f[pb_grouptr]'
         }	
 		],
         buttons: [{
@@ -120,7 +103,7 @@ PemohonDataStore = new Ext.data.Store({
 	    closable:true,
             closeAction:'hide',	 
 	    width:500,
-	    height:400,       
+	    height:120,       
             layout: 'fit',		       
 		    
 		listeners : {
@@ -169,15 +152,8 @@ PemohonDataStore = new Ext.data.Store({
 		[
 		new Ext.form.Hidden 
 		({
-			//name: 'id_transaksi'					
+                    name: 'id_grouptr'
 		}),
-		{
-            xtype: 'textfield',
-            fieldLabel: 'ID Group Transaksi',
-			anchor: '80%',
-                        readOnly: true,
-			name: 'id_grouptr'
-        },
 		
 	{
             xtype: 'textfield',
@@ -188,11 +164,17 @@ PemohonDataStore = new Ext.data.Store({
 			
         },
 	{
-            xtype: 'textfield',
-            fieldLabel: 'PB Group Transaksi',			
-			anchor: '80%',
-			name: 'pb_grouptr',
-                        id: 'pb_grouptr'
+            xtype: 'combo',
+            fieldLabel: 'Status Group',			
+            anchor: '80%',
+            store: ['aktif','tidak aktif'],
+            displayField: 'pb_grouptr',
+            typeAhead: true,
+            mode: 'local',
+            triggerAction: 'all',
+            forceSelection: true,
+            selectOnFocus:true,
+            name: 'pb_grouptr'
         }			
 		],
 		
@@ -233,8 +215,8 @@ PemohonDataStore = new Ext.data.Store({
             title: 'Edit Input',
             closable:true,
             closeAction:'hide',	 
-	    width:500,
-	    height:500,       
+	    width:400,
+	    height:200,       
             layout: 'fit',		
             modal: true,		
         items: [

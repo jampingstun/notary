@@ -77,24 +77,12 @@ PemohonDataStore = new Ext.data.Store({
         defaults: {allowBlank: false},
 		
         items: [
-		{
-            xtype: 'textfield',
-            fieldLabel: 'ID Group Pemohon',
-			anchor: '80%',
-			name: 'id_grouppemohon'
-        },
        	{
             xtype: 'textfield',
             fieldLabel: 'Nama Group Pemohon',			
 			anchor: '80%',
 			name: 'f[nm_grouppemohon]'
 			
-        },
-	{
-            xtype: 'textfield',
-            fieldLabel: 'PB Group Pemohon',			
-			anchor: '80%',
-			name: 'f[pb_grouppemohon]'
         }	
 		],
         buttons: [{
@@ -131,7 +119,7 @@ PemohonDataStore = new Ext.data.Store({
 	    closable:true,
             closeAction:'hide',	 
 	    width:500,
-	    height:400,       
+	    height:120,       
             layout: 'fit',		       
 		    
 		listeners : {
@@ -180,15 +168,8 @@ PemohonDataStore = new Ext.data.Store({
 		[
 		new Ext.form.Hidden 
 		({
-			//name: 'id_transaksi'					
+			name: 'id_grouppemohon'					
 		}),
-		{
-            xtype: 'textfield',
-            fieldLabel: 'ID Group Pemohon',
-			anchor: '80%',
-                        readOnly: true,
-			name: 'id_grouppemohon'
-        },
 		
 	{
             xtype: 'textfield',
@@ -199,11 +180,17 @@ PemohonDataStore = new Ext.data.Store({
 			
         },
 	{
-            xtype: 'textfield',
-            fieldLabel: 'PB Group Pemohon',			
-			anchor: '80%',
-			name: 'pb_grouppemohon',
-                        id: 'pb_grouppemohon'
+            xtype: 'combo',
+            fieldLabel: 'Status Group',			
+            anchor: '80%',
+            store: ['aktif','tidak aktif'],
+            displayField: 'pb_grouppemohon',
+            typeAhead: true,
+            mode: 'local',
+            triggerAction: 'all',
+            forceSelection: true,
+            selectOnFocus:true,
+            name: 'pb_grouppemohon'
         }			
 		],
 		
@@ -245,7 +232,7 @@ PemohonDataStore = new Ext.data.Store({
             closable:true,
             closeAction:'hide',	 
 	    width:500,
-	    height:500,       
+	    height:200,       
             layout: 'fit',		
             modal: true,		
         items: [
