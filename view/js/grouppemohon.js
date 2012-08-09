@@ -75,34 +75,12 @@ PemohonDataStore = new Ext.data.Store({
         bodyStyle:'padding:5px 5px 0',		                
         labelWidth: 130,		
         defaults: {allowBlank: false},
-		
         items: [
-       {
+        {
             xtype: 'textfield',
-            fieldLabel: 'Nama Group Pemohon',			
+            fieldLabel: 'Nama Group',			
 			anchor: '80%',
 			name: 'f[nm_grouppemohon]'
-			
-
-        },
-        {
-            xtype: 'textfield',
-            fieldLabel: 'Nama Perusahaan',			
-			anchor: '80%',
-			name: 'f[perusahaan_grouppemohon]'
-			
-        },
-        {
-            xtype: 'textfield',
-            fieldLabel: 'Alamat Perusahaan',			
-			anchor: '80%',
-			name: 'f[alamat_grouppemohon]'
-        },
-        {
-            xtype: 'textfield',
-            fieldLabel: 'Telp.',			
-			anchor: '80%',
-			name: 'f[telp_grouppemohon]'
         },
         {
             xtype: 'combo',
@@ -111,8 +89,8 @@ PemohonDataStore = new Ext.data.Store({
             anchor: '80%',
             store: new Ext.data.SimpleStore({
                     data: [
-                            [1, 'Aktif'],
-                            [0, 'Tidak Aktif']
+                            [0, 'Aktif'],
+                            [1, 'Tidak Aktif']
                     ],
                     fields: ['value', 'text']
             }),
@@ -121,9 +99,8 @@ PemohonDataStore = new Ext.data.Store({
             displayField: 'text',
             triggerAction: 'all',
             editable: false
-
         }	
-		],
+    ],
         buttons: [{
             text: 'Save',
             handler: function(){
@@ -158,11 +135,11 @@ PemohonDataStore = new Ext.data.Store({
  
        
 	var TambahForm = new Ext.Window({      
-	    title: 'Tambah Data',	  
+	    title: 'Tambah Data Group Pemohon',	  
 	    closable:true,
             closeAction:'hide',	 
 	    width:500,
-	    height:120,       
+	    height:150,       
             layout: 'fit',		       
 		    
 		listeners : {
@@ -209,14 +186,14 @@ PemohonDataStore = new Ext.data.Store({
 		}),
         items: 
 		[
-		new Ext.form.Hidden 
+		new Ext.form.Hidden
 		({
 			name: 'id_grouppemohon'					
 		}),
 		
 	{
             xtype: 'textfield',
-            fieldLabel: 'Nama Group Pemohon',			
+            fieldLabel: 'Nama Group',			
 			anchor: '80%',
 			name: 'nm_grouppemohon',
                         id: 'nm_grouppemohon'
@@ -238,7 +215,7 @@ PemohonDataStore = new Ext.data.Store({
 		],
 		
 		buttons: [{
-            text: 'SAVE',
+            text: 'Save',
 			handler:function()
 			{
 				Edit.getForm().submit
@@ -271,11 +248,11 @@ PemohonDataStore = new Ext.data.Store({
         }]
 	});
 	var EditForm = new Ext.Window({
-            title: 'Edit Input',
+            title: 'Edit Data Group Pemohon',
             closable:true,
             closeAction:'hide',	 
 	    width:500,
-	    height:200,       
+	    height:150,       
             layout: 'fit',		
             modal: true,		
         items: [
@@ -307,16 +284,16 @@ PemohonDataStore = new Ext.data.Store({
       // local vars
       var GroupSearchForm;
       var GroupSearchWindow;
-      var SearchIdGroup;
+//      var SearchIdGroup;
       var SearchNmGroup;
       var SearchPbGroup;
  
-      SearchIdGroup= new Ext.form.TextField({
-          fieldLabel: 'ID Group',
-          maxLength: 20,
-          anchor : '95%',
-          maskRe: /([a-zA-Z0-9\s]+)$/
-            });
+//      SearchIdGroup= new Ext.form.TextField({
+//          fieldLabel: 'ID Group',
+//          maxLength: 20,
+//          anchor : '95%',
+//          maskRe: /([a-zA-Z0-9\s]+)$/
+//            });
  
       SearchNmGroup = new Ext.form.TextField({
           fieldLabel: 'Nama Group',
@@ -325,12 +302,18 @@ PemohonDataStore = new Ext.data.Store({
           maskRe: /([a-zA-Z0-9\s]+)$/  
             });
             
-      SearchPbGroup = new Ext.form.TextField({
-          fieldLabel: 'PB Group',
-          maxLength: 20,
-          anchor : '95%',    
-          maskRe: /([a-zA-Z0-9\s]+)$/  
-            });
+      SearchPbGroup =   new Ext.form.ComboBox({ 
+                        fieldLabel: 'Status',
+                        maxLength: 20,
+                        anchor : '95%',
+                        typeAhead: true,
+                        mode: 'local',
+                        triggerAction: 'all',
+                        forceSelection: true,
+                        selectOnFocus:true,
+                        emptyText: 'Pilih Data...',
+                        store: ['Aktif','Tidak Aktif'] 
+                    });
           
       GroupSearchForm = new Ext.FormPanel({
        labelAlign: 'top',
@@ -339,7 +322,7 @@ PemohonDataStore = new Ext.data.Store({
        items: [{
          layout: 'form',
          border: false,
-         items: [ SearchIdGroup,SearchNmGroup,SearchPbGroup],
+         items: [ SearchNmGroup,SearchPbGroup],
          buttons: [{
                text: 'Search',
                handler: function listSearch(){
@@ -350,7 +333,7 @@ PemohonDataStore = new Ext.data.Store({
                             // Cause the datastore to do another query : 
                              PemohonDataStore.baseParams = {
                                 act: 'cari',
-                                id_grouppemohon: SearchIdGroup.getValue(),
+                                //id_grouppemohon: SearchIdGroup.getValue(),
                                 nm_grouppemohon : SearchNmGroup.getValue(),
                                 pb_grouppemohon : SearchPbGroup.getValue()
                                     };
@@ -376,7 +359,7 @@ PemohonDataStore = new Ext.data.Store({
          title: 'Cari Data Group Pemohon',
          closable:true,
          width: 200,
-         height: 300,
+         height: 200,
          plain:true,
          layout: 'fit',
          items: GroupSearchForm

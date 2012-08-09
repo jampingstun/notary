@@ -25,10 +25,10 @@ if($_GET['act'] == "get")
 	}
         for($i=0;$i<count($arr);$i++){
                 if($arr[$i][pb_grouppemohon]==1){
-                   $arr[$i][pb_grouppemohon] = 'aktif'; 
+                   $arr[$i][pb_grouppemohon] = 'Aktif'; 
                 }
                 else{
-                    $arr[$i][pb_grouppemohon] = 'tidak aktif';
+                    $arr[$i][pb_grouppemohon] = 'Tidak Aktif';
                 }
                 }
 		$jsonresult = json_encode($arr);
@@ -53,17 +53,23 @@ else if($_GET['act'] == "edit")
 else if($_GET['act'] == "add")
 
 {
-      //move_uploaded_file($_FILES['file_dokumentasi']['tmp_name'],"artikel/".$_FILES['file_dokumentasi']['name']);	 
-    $f = $_POST['f'];
+   $f = $_POST['f'];
+    $pb = $f['pb_grouppemohon'];
+    if ($pb == 'Aktif'){
+        $f['pb_grouppemohon'] = '1';
+    }
+    else{
+        $f['pb_grouppemohon'] = '0';
+    }
+    
     $info = json_encode($f);
   // echo 'one';
   //  die('resop');
-    ?>
-    
-    <?
+
+    $erno = $f['nm_grouppemohon'].$f['pb_grouppemohon'].$info;
     //echo $str;
-    //$sql_query = mysql_query("INSERT INTO grouppemohon(`id_grouppemohon`,`nm_grouppemohon`,`pb_grouppemohon`) VALUES('null','".$_POST["nm_grouppemohon"]."','".$_POST["pb_grouppemohon"]."')");
-    $sql=mysql_query("insert into grouppemohon(id_grouppemohon,nm_grouppemohon,pb_grouppemohon,infogrouppemohon) values(NULL,'".$f['nm_grouppemohon']."','".$f['pb_grouppemohon']."','".$info."'");
+    //$sql=mysql_query("insert into grouppemohon(id_grouppemohon,nm_grouppemohon,pb_grouppemohon,infogrouppemohon) values(NULL,'".$f['nm_grouppemohon']."','".$f['pb_grouppemohon']."','".$info."')"); //ojo dibrusek
+    $sql=mysql_query("insert into grouppemohon(id_grouppemohon,nm_grouppemohon,pb_grouppemohon) values(NULL,'".$f['nm_grouppemohon']."','".$f['pb_grouppemohon']."')");
     //echo "{$sql}";
     if ($sql)
                     {
@@ -71,7 +77,7 @@ else if($_GET['act'] == "add")
                 } 
                     else
                     {
-                    echo "{success: false, errors: { reason: 'upload failed!!' }}";
+                    echo "{success: false, errors: { reason: '.$erno.' }}";
                 }
 }
 
@@ -87,6 +93,17 @@ else if((isset($_POST['act'])) == "cari")
    $idgroup = $_POST['id_grouppemohon'];
    $nmgroup = $_POST['nm_grouppemohon'];
    $pbgroup = $_POST['pb_grouppemohon'];
+   
+   if ($pbgroup == 'Aktif'){
+       $pbgroup = '1';
+   }
+   else if($pbgroup == 'Tidak Aktif'){
+       $pbgroup = '0';
+   }
+   else{
+       $pbgroup = '';
+   }
+   
    $query = "SELECT * FROM grouppemohon WHERE id_grouppemohon LIKE '%".$idgroup."%'";
    if($nmgroup != ''){
       $query .= " AND nm_grouppemohon LIKE '%".$nmgroup."%'";
@@ -94,7 +111,7 @@ else if((isset($_POST['act'])) == "cari")
    if($pbgroup != ''){
       $query .= " AND pb_grouppemohon = '".$pbgroup."'";
    };
- 
+   
    $result = mysql_query($query);
    $nbrows = mysql_num_rows($result);  
    if($nbrows>0){
@@ -102,6 +119,14 @@ else if((isset($_POST['act'])) == "cari")
             // render the right date format  
       $arr[] = $rec;
     }
+            for($i=0;$i<count($arr);$i++){
+                if($arr[$i][pb_grouppemohon]==1){
+                   $arr[$i][pb_grouppemohon] = 'Aktif'; 
+                }
+                else{
+                    $arr[$i][pb_grouppemohon] = 'Tidak Aktif';
+                }
+                }
     $jsonresult = json_encode($arr);
     echo '({"total":"'.$nbrows.'","results":'.$jsonresult.'})';
    } else {
@@ -120,10 +145,10 @@ else if ($_GET['act'] == 'show') {
                 
                 for($i=0;$i<count($arr);$i++){
                 if($arr[$i][pb_grouppemohon]==1){
-                   $arr[$i][pb_grouppemohon] = 'aktif'; 
+                   $arr[$i][pb_grouppemohon] = 'Aaktif'; 
                 }
                 else{
-                    $arr[$i][pb_grouppemohon] = 'tidak aktif';
+                    $arr[$i][pb_grouppemohon] = 'Tidak Aktif';
                 }
                 }
                 
