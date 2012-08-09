@@ -145,7 +145,7 @@ else if ($_GET['act'] == 'show') {
                 
                 for($i=0;$i<count($arr);$i++){
                 if($arr[$i][pb_grouppemohon]==1){
-                   $arr[$i][pb_grouppemohon] = 'Aaktif'; 
+                   $arr[$i][pb_grouppemohon] = 'Aktif'; 
                 }
                 else{
                     $arr[$i][pb_grouppemohon] = 'Tidak Aktif';
