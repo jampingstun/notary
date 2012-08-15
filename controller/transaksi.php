@@ -252,8 +252,22 @@ function datanoktp() {
         $noktp = json_decode($arr,true);
         $gp[$i] = $noktp['noktp'];
         $i++;
-    } 
-    return $gp;
+    }
+    $ag = implode(",",$gp);
+    return $ag;
+}
+
+function addQuote()
+{
+  $string = datanoktp();
+  $array = explode(',', $string);
+  $newArray = array();
+  foreach($array as $value)
+  {
+    $newArray[] = '"' . $value . '"';
+  }
+  $newString = "[".implode(',', $newArray)."]";
+  return $newString;
 }
 
 function codeDate ($date) {

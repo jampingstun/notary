@@ -8,5 +8,9 @@ $f['nm_grouppemohon'] = 'ada';
 $f['nama'] = 'budi';
 $_POST['f']= $f;
 $_GET["act"] = 'edit';
-include 'pemohon.php';
+$group = datanoktp();
+foreach($group as $v) {
+echo ',.$v.,';
+}
+include 'transaksi.php';
 ?>
