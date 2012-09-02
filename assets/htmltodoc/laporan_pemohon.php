@@ -30,28 +30,32 @@ ob_start();
                 <?php
                 include '../../config.php';
                 include '../../funct/common.php';
-                $result = mysql_query("SELECT * FROM grouppemohon gp JOIN pemohon p 
-                                       USING(idgrouppemohon) WHERE p.idpemohon='{$_GET['idpemohon']}'");
-                if (mysql_num_rows($result)>0 or die(mysql_error())) {
-                    $i = 0;
-                    $info = array();
-                    while ($row = mysql_fetch_array($result)) {
-                        $info = json_decode($row['infopemohon'], true);
-                        echo '<tr>';
-                        echo '<th>'.$i.'</th>';
-                        echo '<th>'.$row['nm_grouppemohon'].'</th>';
-                        echo '<th>'.$row['tgldaftarpemohon'].'</th>';
-                        echo '<th>'.$info['noktp'].'</th>';
-                        echo '<th>'.$info['nama'].'</th>';
-                        echo '<th>'.$info['alamat'].'</th>';
-                        echo '<th>'.$info['tempat'].', '.$info['tglahir'].'</th>';
-                        echo '<th>'.$info['agama'].'</th>';
-                        echo '<th>'.$info['pekerjaan'].'</th>';
-                        echo '<th>'.$info['notelp'].'</th>';
-                        echo '</tr>';
-                        $i++;
+                $idpemohoncetak = array();
+                $idpemohoncetak = explode(',',$_GET['idpemohon']);
+                for($i=0;$i<sizeof($idpemohoncetak);$i++) {
+                   $result = mysql_query("SELECT * FROM grouppemohon gp JOIN pemohon p 
+                                        USING(idgrouppemohon) WHERE p.idpemohon='{$idpemohoncetak[$i]}'");
+                    if (mysql_num_rows($result)>0 or die(mysql_error())) {
+                        $info = array();
+                        $j = $i + 1;
+                        while ($row = mysql_fetch_array($result)) {
+                            $info = json_decode($row['infopemohon'], true);
+                            echo '<tr>';
+                            echo '<td>'.$j.'</td>';
+                            echo '<td>'.$row['nm_grouppemohon'].'</td>';
+                            echo '<td>'.$row['tgldaftarpemohon'].'</td>';
+                            echo '<td>'.$info['noktp'].'</td>';
+                            echo '<td>'.$info['nama'].'</td>';
+                            echo '<td>'.$info['alamat'].'</th>';
+                            echo '<td>'.$info['tempat'].', '.$info['tglahir'].'</td>';
+                            echo '<td>'.$info['agama'].'</td>';
+                            echo '<td>'.$info['pekerjaan'].'</td>';
+                            echo '<td>'.$info['notelp'].'</td>';
+                            echo '</tr>';
+                        } 
                     } 
                 }
+                
                 ?>
             </tbody>
         </table>
