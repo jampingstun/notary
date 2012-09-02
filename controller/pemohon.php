@@ -186,7 +186,7 @@ else if($_GET['act'] == "show"){
 		while($rec = mysql_fetch_assoc($result)){
                         $arr = $rec;
                         $a = $arr['idgrouppemohon'];
-                        $sqla = mysql_query("SELECT nm_grouppemohon FROM grouppemohon WHERE id_grouppemohon='".$a."'");
+                        $sqla = mysql_query("SELECT nm_grouppemohon FROM grouppemohon WHERE idgrouppemohon='".$a."'");
                         $rows = mysql_num_rows($sqla);
                         $array = array();
                         if($rows>0){
