@@ -1,0 +1,23 @@
+			 <html xmlns:v="urn:schemas-microsoft-com:vml"
+			xmlns:o="urn:schemas-microsoft-com:office:office"
+			xmlns:w="urn:schemas-microsoft-com:office:word"
+			xmlns="http://www.w3.org/TR/REC-html40">
+			
+			<body>
+<html>
+    
+    
+        <table border="1" style="font-weight:normal">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr><td>1</td><td>UNY</td><td>Aktif</td></tr>            </tbody>
+        </table>
+    
+</html>
+</body></html>

@@ -136,6 +136,13 @@ else if(isset($_POST["del"]))
                 $sql = mysql_query("delete from tbl_index where tipe='pemohon' and id='".$_POST["del"]."'");
 		mysql_close();
 }
+else if(isset($_POST["prt"]))
+{
+    header('Location: http://localhost/notary/assets/htmltodoc/laporan_pemohon.php?idpemohon='.$_POST["prt"]);
+    echo 'test';
+}
+		
+                
 else if((isset($_POST['act'])) == "cari")
 {
 $tipe1 = $_POST['tipedata1'];

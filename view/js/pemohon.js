@@ -473,6 +473,33 @@ PemohonDataStore = new Ext.data.Store({
 			
 		}
 	}
+        function prt(btn)
+	{
+		if(btn == 'yes')
+		{
+			var m = EditorGrid.getSelectionModel().getSelections();
+			var store = EditorGrid.getStore();
+			var abc = new Array();
+                        var te = '0';
+			for(var i=0; i< m.length; i++){
+				var rec = m[i];
+                                abc.push(m[i].get("idpemohon"));
+			}
+                        PemohonDataStore.load({
+                                params:{prt:abc.toString()},
+                                callback: function(){
+                                    te = '1';
+                                    
+                                }
+                                
+                        });
+                        if (te=='1') {
+                            window.open('/notary/assets/htmltodoc/laporan_pemohon.doc');
+                        }
+                        
+                        
+		}
+	}
         
       function startAdvancedSearch(){
       // local vars
@@ -621,6 +648,23 @@ PemohonDataStore = new Ext.data.Store({
 					if(m.length > 0)
 					{
 						Ext.MessageBox.confirm('Konfirmasi', 'Apakah Anda Yakin Menghapus Field Ini?' , del);						
+					}
+					else
+					{
+						Ext.MessageBox.alert('Warning', 'Pilih Salah Satu Yang Mau Anda Hapus');
+					}
+				}
+			
+			},'-',
+                        {
+				text:'Cetak',
+				iconCls:'remove',
+				handler: function()
+				{
+					var m = EditorGrid.getSelectionModel().getSelections();
+					if(m.length > 0)
+					{
+						Ext.MessageBox.confirm('Konfirmasi', 'Apakah Anda Yakin Menghapus Field Ini?' , prt);						
 					}
 					else
 					{

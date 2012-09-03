@@ -242,22 +242,55 @@ PemohonDataStore = new Ext.data.Store({
 		]
     });
     function del(btn)
+    
+    
+    
                 {
 		if(btn == 'yes')
 		{
 			var m = EditorGrid.getSelectionModel().getSelections();
 			var store = EditorGrid.getStore();
-			
+                        var abc = new Array();
 			for(var i=0; i< m.length; i++){
 				var rec = m[i];
+                                abc.push(m[i].get("idgrouptr"));
 				if(rec){
 					PemohonDataStore.load({
 						params:{del:rec.get("idgrouptr"),start:0,limit:10},
-						callback: function(){	
+						callback: function(){
+
 						}
 					});store.remove(rec);
 				}
 			}
+			alert(abc);
+		}
+	}
+        
+        function prt(btn)
+	{
+		if(btn == 'yes')
+		{
+			var m = EditorGrid.getSelectionModel().getSelections();
+			var store = EditorGrid.getStore();
+			var abc = new Array();
+			for(var i=0; i< m.length; i++){
+				var rec = m[i];
+                                abc.push(m[i].get("idgrouptr"));
+				if(rec){
+					
+				}
+			}
+                        PemohonDataStore.load({
+						params:{prt:abc.toString(),start:0,limit:10},
+						callback: function(){
+							
+						}
+   
+					});
+                       window.open('/notary/assets/htmltodoc/laporan_pemohon.html');
+                       window.open('/notary/assets/htmltodoc/laporan_pemohon.doc');
+                                        
 			
 		}
 	}
@@ -406,7 +439,25 @@ PemohonDataStore = new Ext.data.Store({
 					var m = EditorGrid.getSelectionModel().getSelections();
 					if(m.length > 0)
 					{
+                                            
 						Ext.MessageBox.confirm('Konfirmasi', 'Apakah Anda Yakin Menghapus Field Ini?' , del);						
+					}
+					else
+					{
+						Ext.MessageBox.alert('Warning', 'Pilih Salah Satu Yang Mau Anda Hapus');
+					}
+				}
+			
+			},'-',
+                        {
+				text:'Cetak',
+				iconCls:'book',
+				handler: function()
+				{
+					var m = EditorGrid.getSelectionModel().getSelections();
+					if(m.length > 0)
+					{
+						Ext.MessageBox.confirm('Konfirmasi', 'Apakah Anda Yakin Menghapus Field Ini?' , print)
 					}
 					else
 					{

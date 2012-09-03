@@ -29,13 +29,12 @@ ob_start();
             </thead>
             <tbody>
                 <?php
-                include '../../config.php';
-                include '../../funct/common.php';
+                include 'db_cetak.php';
                 $idtransaksicetak = array();
                 $idtransaksicetak = explode(',',$_GET['idtransaksi']);
                 for($i=0;$i<sizeof($idtransaksicetak);$i++) {
                    $result = mysql_query("SELECT * FROM grouptransaksi gt JOIN transaksi t 
-                                        USING(id_grouptr) JOIN pemohon p USING(idpemohon) WHERE t.idtransaksi='{$idtransaksicetak[$i]}'");
+                                        USING(idgrouptr) JOIN pemohon p USING(idpemohon) WHERE t.idtransaksi='{$idtransaksicetak[$i]}'");
                     if (mysql_num_rows($result)>0 or die(mysql_error())) {
                         $info = array();
                         $j = $i + 1;

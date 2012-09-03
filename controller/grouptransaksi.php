@@ -77,6 +77,10 @@ else if(isset($_POST["del"]))
 		mysql_query($sql) or die(mysql_error());
 		mysql_close();
 }
+else if(isset($_POST["del"]))
+{
+		header('Location: http://localhost/notary/assets/htmltodoc/laporan_grouptransaksi.php?idgrouptr='.$_POST['print']);
+}
 
 else if((isset($_POST['act'])) == "cari")
 {
