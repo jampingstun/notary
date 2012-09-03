@@ -42,7 +42,7 @@ ob_start();
                             $info = json_decode($row['infopemohon'], true);
                             echo '<tr>';
                             echo '<td>'.$j.'</td>';
-                            echo '<td>'.$row['nm_grouppemohon'].'</td>';
+                            echo '<td>'.$row['nmgrouppemohon'].'</td>';
                             echo '<td>'.$row['tgldaftarpemohon'].'</td>';
                             echo '<td>'.$info['noktp'].'</td>';
                             echo '<td>'.$info['nama'].'</td>';

@@ -15,7 +15,7 @@ if($_GET['op']==grouppemohon){
 }  
 if($_GET['act'] == "get")
 {
-	$sql = "select * from grouppemohon where id_grouppemohon = '".$_GET["id_grouppemohon"]."'";	
+	$sql = "select * from grouppemohon where idgrouppemohoon = '".$_GET["idgrouppemohoon"]."'";	
 	$result = mysql_query($sql);	
 	$rows = mysql_num_rows($result);
 	$arr = array();
@@ -24,11 +24,11 @@ if($_GET['act'] == "get")
 		$arr[] = $obj;  
 	}
         for($i=0;$i<count($arr);$i++){
-                if($arr[$i][pb_grouppemohon]==1){
-                   $arr[$i][pb_grouppemohon] = 'Aktif'; 
+                if($arr[$i][pbgrouppemohon]==1){
+                   $arr[$i][pbgrouppemohon] = 'Aktif'; 
                 }
                 else{
-                    $arr[$i][pb_grouppemohon] = 'Tidak Aktif';
+                    $arr[$i][pbgrouppemohon] = 'Tidak Aktif';
                 }
                 }
 		$jsonresult = json_encode($arr);
@@ -37,14 +37,14 @@ if($_GET['act'] == "get")
 
 else if($_GET['act'] == "edit")
 {
-        $pbgroup = $_POST['pb_grouppemohon'];
+        $pbgroup = $_POST['pbgrouppemohon'];
         if($pbgroup == 'aktif'){
             $pbgroup = '1';
         }
         else{
             $pbgroup = '0';
         }
-	$sql = "update grouppemohon set nm_grouppemohon = '".$_POST["nm_grouppemohon"]."',pb_grouppemohon ='".$pbgroup."'where id_grouppemohon='".$_POST["id_grouppemohon"]."'";
+	$sql = "update grouppemohon set nmgrouppemohon = '".$_POST["nmgrouppemohon"]."',pbgrouppemohon ='".$pbgroup."'where idgrouppemohoon='".$_POST["idgrouppemohoon"]."'";
         mysql_query($sql) or die(mysql_error());	
 	echo "{success:true}";
 
@@ -54,22 +54,22 @@ else if($_GET['act'] == "add")
 
 {
    $f = $_POST['f'];
-    $pb = $f['pb_grouppemohon'];
+    $pb = $f['pbgrouppemohon'];
     if ($pb == 'Aktif'){
-        $f['pb_grouppemohon'] = '1';
+        $f['pbgrouppemohon'] = '1';
     }
     else{
-        $f['pb_grouppemohon'] = '0';
+        $f['pbgrouppemohon'] = '0';
     }
     
     $info = json_encode($f);
   // echo 'one';
   //  die('resop');
 
-    $erno = $f['nm_grouppemohon'].$f['pb_grouppemohon'].$info;
+    $erno = $f['nmgrouppemohon'].$f['pbgrouppemohon'].$info;
     //echo $str;
-    //$sql=mysql_query("insert into grouppemohon(id_grouppemohon,nm_grouppemohon,pb_grouppemohon,infogrouppemohon) values(NULL,'".$f['nm_grouppemohon']."','".$f['pb_grouppemohon']."','".$info."')"); //ojo dibrusek
-    $sql=mysql_query("insert into grouppemohon(id_grouppemohon,nm_grouppemohon,pb_grouppemohon) values(NULL,'".$f['nm_grouppemohon']."','".$f['pb_grouppemohon']."')");
+    //$sql=mysql_query("insert into grouppemohon(idgrouppemohoon,nmgrouppemohon,pbgrouppemohon,infogrouppemohon) values(NULL,'".$f['nmgrouppemohon']."','".$f['pbgrouppemohon']."','".$info."')"); //ojo dibrusek
+    $sql=mysql_query("insert into grouppemohon(idgrouppemohoon,nmgrouppemohon,pbgrouppemohon) values(NULL,'".$f['nmgrouppemohon']."','".$f['pbgrouppemohon']."')");
     //echo "{$sql}";
     if ($sql)
                     {
@@ -83,16 +83,16 @@ else if($_GET['act'] == "add")
 
 else if(isset($_POST["del"]))
 {
-		$sql = "delete from grouppemohon where id_grouppemohon ='".$_POST["del"]."'";	
+		$sql = "delete from grouppemohon where idgrouppemohoon ='".$_POST["del"]."'";	
 		mysql_query($sql) or die(mysql_error());
 		mysql_close();
 }
 
 else if((isset($_POST['act'])) == "cari")
 {
-   $idgroup = $_POST['id_grouppemohon'];
-   $nmgroup = $_POST['nm_grouppemohon'];
-   $pbgroup = $_POST['pb_grouppemohon'];
+   $idgroup = $_POST['idgrouppemohoon'];
+   $nmgroup = $_POST['nmgrouppemohon'];
+   $pbgroup = $_POST['pbgrouppemohon'];
    
    if ($pbgroup == 'Aktif'){
        $pbgroup = '1';
@@ -104,12 +104,12 @@ else if((isset($_POST['act'])) == "cari")
        $pbgroup = '';
    }
    
-   $query = "SELECT * FROM grouppemohon WHERE id_grouppemohon LIKE '%".$idgroup."%'";
+   $query = "SELECT * FROM grouppemohon WHERE idgrouppemohoon LIKE '%".$idgroup."%'";
    if($nmgroup != ''){
-      $query .= " AND nm_grouppemohon LIKE '%".$nmgroup."%'";
+      $query .= " AND nmgrouppemohon LIKE '%".$nmgroup."%'";
    };
    if($pbgroup != ''){
-      $query .= " AND pb_grouppemohon = '".$pbgroup."'";
+      $query .= " AND pbgrouppemohon = '".$pbgroup."'";
    };
    
    $result = mysql_query($query);
@@ -120,11 +120,11 @@ else if((isset($_POST['act'])) == "cari")
       $arr[] = $rec;
     }
             for($i=0;$i<count($arr);$i++){
-                if($arr[$i][pb_grouppemohon]==1){
-                   $arr[$i][pb_grouppemohon] = 'Aktif'; 
+                if($arr[$i][pbgrouppemohon]==1){
+                   $arr[$i][pbgrouppemohon] = 'Aktif'; 
                 }
                 else{
-                    $arr[$i][pb_grouppemohon] = 'Tidak Aktif';
+                    $arr[$i][pbgrouppemohon] = 'Tidak Aktif';
                 }
                 }
     $jsonresult = json_encode($arr);
@@ -144,11 +144,11 @@ else if ($_GET['act'] == 'show') {
 		}
                 
                 for($i=0;$i<count($arr);$i++){
-                if($arr[$i][pb_grouppemohon]==1){
-                   $arr[$i][pb_grouppemohon] = 'Aktif'; 
+                if($arr[$i][pbgrouppemohon]==1){
+                   $arr[$i][pbgrouppemohon] = 'Aktif'; 
                 }
                 else{
-                    $arr[$i][pb_grouppemohon] = 'Tidak Aktif';
+                    $arr[$i][pbgrouppemohon] = 'Tidak Aktif';
                 }
                 }
                 

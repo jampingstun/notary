@@ -1,6 +1,6 @@
-var nm_grouptr;       // this will be our columnmodel
-var id_grouptr;
-var pb_grouptr;
+var nmgrouptr;       // this will be our columnmodel
+var idgrouptr;
+var pbgrouptr;
  
 Ext.onReady(function(){
 Ext.QuickTips.init();
@@ -13,7 +13,7 @@ PemohonDataStore = new Ext.data.Store({
             }),
             baseParams:
 		{
-		    orderby:'id_grouptr',
+		    orderby:'idgrouptr',
                     sort:'DESC'
 	  
 	    }, // this parameter asks for listing
@@ -23,23 +23,23 @@ PemohonDataStore = new Ext.data.Store({
         totalProperty: 'total',
         id: 'id'
       },[ 
-        {name: 'id_grouptr', type: 'int', mapping: 'id_grouptr'},
-        {name: 'nm_grouptr', type: 'string', mapping: 'nm_grouptr'},
-        {name: 'pb_grouptr', type: 'string', mapping: 'pb_grouptr'}
+        {name: 'idgrouptr', type: 'int', mapping: 'idgrouptr'},
+        {name: 'nmgrouptr', type: 'string', mapping: 'nmgrouptr'},
+        {name: 'pbgrouptr', type: 'string', mapping: 'pbgrouptr'}
       ]),
-      sortInfo:{field: 'id_grouptr', direction: "ASC"}
+      sortInfo:{field: 'idgrouptr', direction: "ASC"}
     });
      PemohonDataStore.load();
     PemohonColumnModel = new Ext.grid.ColumnModel(
     [   Checkbox,
       {
         header: 'Nama Group Transaksi',
-        dataIndex: 'nm_grouptr',
+        dataIndex: 'nmgrouptr',
         width: 150,
         hidden: false
       },{
         header: 'Status',
-        dataIndex: 'pb_grouptr',
+        dataIndex: 'pbgrouptr',
         width: 150,
         readOnly: true                     // we don't necessarily want to see this...
       }]
@@ -65,13 +65,13 @@ PemohonDataStore = new Ext.data.Store({
             xtype: 'textfield',
             fieldLabel: 'Nama Group',			
 			anchor: '80%',
-			name: 'f[nm_grouptr]'
+			name: 'f[nmgrouptr]'
 			
         },
         {
             xtype: 'combo',
             fieldLabel: 'Status',
-            name: 'f[pb_grouptr]',
+            name: 'f[pbgrouptr]',
             anchor: '80%',
             store: new Ext.data.SimpleStore({
                     data: [
@@ -161,24 +161,24 @@ PemohonDataStore = new Ext.data.Store({
 		reader: new Ext.data.JsonReader ({
 			root: 'results',
 			totalProperty: 'total',
-			id: 'id_grouptr',
+			id: 'idgrouptr',
 			fields: [
-				'id_grouptr','nm_grouptr','pb_grouptr'
+				'idgrouptr','nmgrouptr','pbgrouptr'
 			]
 		}),
         items: 
 		[
 		new Ext.form.Hidden 
 		({
-                    name: 'id_grouptr'
+                    name: 'idgrouptr'
 		}),
 		
 	{
             xtype: 'textfield',
             fieldLabel: 'Nama Group Transaksi',			
 			anchor: '80%',
-			name: 'nm_grouptr',
-                        id: 'nm_grouptr'
+			name: 'nmgrouptr',
+                        id: 'nmgrouptr'
 			
         },
 	{
@@ -186,13 +186,13 @@ PemohonDataStore = new Ext.data.Store({
             fieldLabel: 'Status Group',			
             anchor: '80%',
             store: ['aktif','tidak aktif'],
-            displayField: 'pb_grouptr',
+            displayField: 'pbgrouptr',
             typeAhead: true,
             mode: 'local',
             triggerAction: 'all',
             forceSelection: true,
             selectOnFocus:true,
-            name: 'pb_grouptr'
+            name: 'pbgrouptr'
         }			
 		],
 		
@@ -252,7 +252,7 @@ PemohonDataStore = new Ext.data.Store({
 				var rec = m[i];
 				if(rec){
 					PemohonDataStore.load({
-						params:{del:rec.get("id_grouptr"),start:0,limit:10},
+						params:{del:rec.get("idgrouptr"),start:0,limit:10},
 						callback: function(){	
 						}
 					});store.remove(rec);
@@ -315,9 +315,9 @@ PemohonDataStore = new Ext.data.Store({
                             // Cause the datastore to do another query : 
                              PemohonDataStore.baseParams = {
                                 act: 'cari',
-                            //    id_grouptransaksi : SearchIdGroup.getValue(),
-                                nm_grouptransaksi : SearchNmGroup.getValue(),
-                                pb_grouptransaksi : SearchPbGroup.getValue()
+                            //    idgrouptransaksi : SearchIdGroup.getValue(),
+                                nmgrouptransaksi : SearchNmGroup.getValue(),
+                                pbgrouptransaksi : SearchPbGroup.getValue()
                                     };
                             // Cause the datastore to do another query :
                             PemohonDataStore.reload();
@@ -387,7 +387,7 @@ PemohonDataStore = new Ext.data.Store({
 					 var m = EditorGrid.getSelectionModel().getSelections();
 					 if(m.length > 0)
 					 {
-					    Edit.getForm().load({url:'controller/grouptransaksi.php?act=get&id_grouptr='+ m[0].get('id_grouptr'), waitMsg:'Loading'});
+					    Edit.getForm().load({url:'controller/grouptransaksi.php?act=get&idgrouptr='+ m[0].get('idgrouptr'), waitMsg:'Loading'});
 						EditForm.show();			 
 					 }
 					 else

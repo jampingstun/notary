@@ -23,7 +23,7 @@ PemohonDataStore = new Ext.data.Store({
         totalProperty: 'total'
       },[ 
           {name: 'idpemohon', type: 'int', mapping: 'idpemohon'},
-        {name: 'nm_grouppemohon', type: 'string', mapping: 'nm_grouppemohon'},
+        {name: 'nmgrouppemohon', type: 'string', mapping: 'nmgrouppemohon'},
         {name: 'tgldaftarpemohon', type: 'string', mapping: 'tgldaftarpemohon'},
         {name: 'noktp', type: 'string', mapping: 'noktp'},
         {name: 'nama', type: 'string', mapping: 'nama'},
@@ -49,11 +49,11 @@ PemohonDataStore = new Ext.data.Store({
           totalProperty: 'total'
       },
       [
-        {name: 'id_grouppemohon', type: 'int', mapping: 'id_grouppemohon'},
-        {name: 'nm_grouppemohon', type: 'string', mapping: 'nm_grouppemohon'},
-        {name: 'pb_grouppemohon', type: 'string', mapping: 'pb_grouppemohon'},  
+        {name: 'idgrouppemohon', type: 'int', mapping: 'idgrouppemohon'},
+        {name: 'nmgrouppemohon', type: 'string', mapping: 'nmgrouppemohon'},
+        {name: 'pbgrouppemohon', type: 'string', mapping: 'pbgrouppemohon'},  
       ]),
-      sortInfo:{field: 'id_grouppemohon', direction: "ASC"}
+      sortInfo:{field: 'idgrouppemohon', direction: "ASC"}
   });
   
   ComboDataStore.load();
@@ -62,7 +62,7 @@ PemohonDataStore = new Ext.data.Store({
     [   Checkbox,
        {
         header: 'Group Pemohon',
-        dataIndex: 'nm_grouppemohon',
+        dataIndex: 'nmgrouppemohon',
         width: 100,
         editor: new Ext.form.TextField({  // rules about editing
             allowBlank: false,
@@ -152,7 +152,7 @@ PemohonDataStore = new Ext.data.Store({
             store: ComboDataStore,
             local: true,
             anchor: '80%',
-            displayField: 'nm_grouppemohon',
+            displayField: 'nmgrouppemohon',
             typeAhead: true,
             mode: 'local',
             triggerAction: 'all',
@@ -308,25 +308,25 @@ PemohonDataStore = new Ext.data.Store({
 			totalProperty: 'total',
 			id: 'idpemohon',
 			fields: [
-				'idpemohon','nm_grouppemohon','tgldaftarpemohon','noktp','nama','alamat','tempat','tglahir','agama','pekerjaan','notelp','pbpemohon'
+				'idpemohon','nmgrouppemohon','tgldaftarpemohon','noktp','nama','alamat','tempat','tglahir','agama','pekerjaan','notelp','pbpemohon'
 			]
 		}),
         items: 
 		[new Ext.form.Hidden 
 		({
-			name: 'id_transaksi'					
+			name: 'idtransaksi'					
 		}),
          {xtype: 'combo',
             fieldLabel: 'Group Pemohon',
             anchor : '80%',
-            displayField: 'nm_grouppemohon',
+            displayField: 'nmgrouppemohon',
             typeAhead: true,
             mode: 'local',
             triggerAction: 'all',
             forceSelection: true,
             selectOnFocus:true,
-            name: 'nm_grouppemohon',
-            id: 'nm_grouppemohon',
+            name: 'nmgrouppemohon',
+            id: 'nmgrouppemohon',
             store: ComboDataStore 
         },	
         {

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Jul 25, 2012 at 10:41 
+-- Generation Time: Sep 03, 2012 at 06:07 
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -26,16 +26,18 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 
 CREATE TABLE IF NOT EXISTS `grouppemohon` (
-  `id_grouppemohon` int(11) NOT NULL AUTO_INCREMENT,
-  `nm_grouppemohon` varchar(30) NOT NULL,
-  `pb_grouppemohon` tinyint(4) NOT NULL,
-  PRIMARY KEY (`id_grouppemohon`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `idgrouppemohon` int(11) NOT NULL AUTO_INCREMENT,
+  `nmgrouppemohon` varchar(30) NOT NULL,
+  `pbgrouppemohon` tinyint(4) NOT NULL,
+  PRIMARY KEY (`idgrouppemohon`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=5 ;
 
 --
 -- Dumping data for table `grouppemohon`
 --
 
+INSERT INTO `grouppemohon` (`idgrouppemohon`, `nmgrouppemohon`, `pbgrouppemohon`) VALUES
+(4, 'UNY', 1);
 
 -- --------------------------------------------------------
 
@@ -44,16 +46,18 @@ CREATE TABLE IF NOT EXISTS `grouppemohon` (
 --
 
 CREATE TABLE IF NOT EXISTS `grouptransaksi` (
-  `id_grouptr` int(11) NOT NULL AUTO_INCREMENT,
-  `nm_grouptr` varchar(30) NOT NULL,
-  `pb_grouptr` tinyint(4) NOT NULL,
-  PRIMARY KEY (`id_grouptr`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  `idgrouptr` int(11) NOT NULL AUTO_INCREMENT,
+  `nmgrouptr` varchar(30) NOT NULL,
+  `pbgrouptr` tinyint(4) NOT NULL,
+  PRIMARY KEY (`idgrouptr`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `grouptransaksi`
 --
 
+INSERT INTO `grouptransaksi` (`idgrouptr`, `nmgrouptr`, `pbgrouptr`) VALUES
+(2, 'Vidusia', 1);
 
 -- --------------------------------------------------------
 
@@ -68,26 +72,16 @@ CREATE TABLE IF NOT EXISTS `pemohon` (
   `infopemohon` text NOT NULL,
   `pbpemohon` tinyint(4) NOT NULL,
   PRIMARY KEY (`idpemohon`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=18 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=43 ;
 
 --
 -- Dumping data for table `pemohon`
 --
 
 INSERT INTO `pemohon` (`idpemohon`, `idgrouppemohon`, `tgldaftarpemohon`, `infopemohon`, `pbpemohon`) VALUES
-(1, 1, '2012-07-18', '{"ktp":"12345","nama":"test","kota":"jogja"}\r\n', 1),
-(6, 0, '0000-00-00', '{"nama":"coba","tempat":"abc","tglahir":"","alamat":"","agama":"","pekerjaan":"","notelp":"","grouppemohon":"something"}', 1),
-(7, 0, '0000-00-00', '{"nama":"","tempat":"","tglahir":"","alamat":"","agama":"","pekerjaan":"","notelp":"","grouppemohon":"something"}', 1),
-(8, 0, '0000-00-00', '{"nama":"","tempat":"","tglahir":"","alamat":"","agama":"","pekerjaan":"","notelp":"","grouppemohon":"something"}', 1),
-(9, 0, '0000-00-00', '{"nama":"pradana","tempat":"bantul","tglahir":"","alamat":"","agama":"","pekerjaan":"","notelp":"","grouppemohon":"something"}', 1),
-(10, 0, '0000-00-00', '{"nama":"lkjh","tempat":"lkjh","tglahir":"","alamat":"","agama":"","pekerjaan":"","notelp":"","grouppemohon":"something"}', 1),
-(11, 0, '0000-00-00', '{"nama":"abc","tempat":"def","tglahir":"","alamat":"","agama":"","pekerjaan":"","notelp":"","grouppemohon":"something"}', 1),
-(12, 0, '0000-00-00', '{"nama":"oioioi","tempat":"oioioio","tglahir":"","alamat":"","agama":"","pekerjaan":"","notelp":"","grouppemohon":"something"}', 1),
-(13, 0, '0000-00-00', '{"nama":"qwert","tempat":"qwert","tglahir":"","alamat":"","agama":"","pekerjaan":"","notelp":"","grouppemohon":"something"}', 1),
-(14, 0, '0000-00-00', '{"nama":"frgre","tempat":"gdfg","tglahir":"","alamat":"","agama":"","pekerjaan":"","notelp":"","grouppemohon":"something"}', 1),
-(15, 0, '0000-00-00', '{"nama":"coba","tempat":"def","tglahir":"","alamat":"","agama":"","pekerjaan":"","notelp":"","grouppemohon":"something"}', 1),
-(16, 0, '0000-00-00', '{"nama":"budi","tempat":"kp","tglahir":"","alamat":"","agama":"","pekerjaan":"","notelp":"","grouppemohon":"something"}', 1),
-(17, 0, '0000-00-00', '{"nama":"faris","tempat":"def","tglahir":"","alamat":"","agama":"","pekerjaan":"","notelp":"","grouppemohon":"something"}', 1);
+(35, 4, '0000-00-00', '{"noktp":"123456789","nama":"Test","tempat":"Bantul","tglahir":"6-05-1992","alamat":"Bantul","agama":"Islam","pekerjaan":"Programmer","notelp":"085729764034","tgldaftar":"2012-08-28"}', 0),
+(41, 4, '0000-00-00', '{"noktp":"343543","nama":"gdfgfd","tempat":"fgfd","tglahir":"fgfd","alamat":"fdgdf","agama":"fgdf","pekerjaan":"fdgdf","notelp":"fgfdg","tgldaftar":"2012-09-02"}', 0),
+(42, 4, '0000-00-00', '{"noktp":"123","nama":"","tempat":"","tglahir":"","alamat":"","agama":"","pekerjaan":"","notelp":"","tgldaftar":"2012-09-03"}', 0);
 
 -- --------------------------------------------------------
 
@@ -109,19 +103,50 @@ CREATE TABLE IF NOT EXISTS `tbl_index` (
 --
 
 INSERT INTO `tbl_index` (`tipe`, `id`, `kode`, `isi`) VALUES
-('pemohon', 1, 'ktp', '123456'),
-('pemohon', 1, 'nama', 'test'),
-('pemohon', 1, 'user', '{"user":"test","password":"1234"}'),
-('pemohon', 12, 'tempat', 'oioioio'),
-('pemohon', 13, 'tempat', 'qwert'),
-('pemohon', 14, 'nama', 'frgre'),
-('pemohon', 14, 'tempat', 'gdfg'),
-('pemohon', 15, 'nama', 'coba'),
-('pemohon', 15, 'tempat', 'def'),
-('pemohon', 16, 'nama', 'budi'),
-('pemohon', 16, 'tempat', 'kp'),
-('pemohon', 17, 'nama', 'faris'),
-('pemohon', 17, 'tempat', 'def');
+('pemohon', 26, 'tempat', 'dfgfdgdf'),
+('pemohon', 27, 'nama', 'po'),
+('pemohon', 27, 'alamat', 'op'),
+('pemohon', 28, 'nama', 'popo'),
+('pemohon', 29, 'noktp', ''),
+('pemohon', 29, 'nama', 'test'),
+('pemohon', 29, 'alamat', 'dgfgfdgd'),
+('pemohon', 29, 'tempat', 'gfgf'),
+('pemohon', 29, 'tglahir', ''),
+('pemohon', 29, 'agama', 'dfdsgg'),
+('pemohon', 29, 'pekerjaan', 'fgfdgf'),
+('pemohon', 29, 'notelp', ''),
+('pemohon', 35, 'noktp', '123456789'),
+('pemohon', 35, 'nama', 'Test'),
+('pemohon', 35, 'alamat', 'Bantul'),
+('pemohon', 35, 'tempat', 'Bantul'),
+('pemohon', 35, 'tglahir', '6-05-1992'),
+('pemohon', 35, 'agama', 'Islam'),
+('pemohon', 35, 'pekerjaan', 'Programmer'),
+('pemohon', 35, 'notelp', '085729764034'),
+('pemohon', 39, 'noktp', 'defsdf'),
+('pemohon', 39, 'nama', ''),
+('pemohon', 39, 'alamat', ''),
+('pemohon', 39, 'tempat', ''),
+('pemohon', 39, 'tglahir', ''),
+('pemohon', 39, 'agama', ''),
+('pemohon', 39, 'pekerjaan', ''),
+('pemohon', 39, 'notelp', ''),
+('pemohon', 41, 'noktp', '343543'),
+('pemohon', 41, 'nama', 'gdfgfd'),
+('pemohon', 41, 'alamat', 'fdgdf'),
+('pemohon', 41, 'tempat', 'fgfd'),
+('pemohon', 41, 'tglahir', 'fgfd'),
+('pemohon', 41, 'agama', 'fgdf'),
+('pemohon', 41, 'pekerjaan', 'fdgdf'),
+('pemohon', 41, 'notelp', 'fgfdg'),
+('pemohon', 42, 'noktp', '123'),
+('pemohon', 42, 'nama', ''),
+('pemohon', 42, 'alamat', ''),
+('pemohon', 42, 'tempat', ''),
+('pemohon', 42, 'tglahir', ''),
+('pemohon', 42, 'agama', ''),
+('pemohon', 42, 'pekerjaan', ''),
+('pemohon', 42, 'notelp', '');
 
 -- --------------------------------------------------------
 
@@ -130,10 +155,10 @@ INSERT INTO `tbl_index` (`tipe`, `id`, `kode`, `isi`) VALUES
 --
 
 CREATE TABLE IF NOT EXISTS `transaksi` (
-  `id_transaksi` int(11) NOT NULL AUTO_INCREMENT,
+  `idtransaksi` int(11) NOT NULL AUTO_INCREMENT,
   `tglmasuk` date NOT NULL,
-  `id_pemohon` int(11) NOT NULL,
-  `id_grouptr` int(11) NOT NULL,
+  `idpemohon` int(11) NOT NULL,
+  `idgrouptr` int(11) NOT NULL,
   `judul` varchar(30) NOT NULL,
   `jmlberkas` int(11) NOT NULL,
   `status` tinyint(4) NOT NULL,
@@ -141,13 +166,15 @@ CREATE TABLE IF NOT EXISTS `transaksi` (
   `harga` int(11) NOT NULL,
   `sudahbayar` int(11) NOT NULL,
   `tglselesai` date NOT NULL,
-  PRIMARY KEY (`id_transaksi`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+  PRIMARY KEY (`idtransaksi`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
 
 --
 -- Dumping data for table `transaksi`
 --
 
+INSERT INTO `transaksi` (`idtransaksi`, `tglmasuk`, `idpemohon`, `idgrouptr`, `judul`, `jmlberkas`, `status`, `jmlberkasselesai`, `harga`, `sudahbayar`, `tglselesai`) VALUES
+(1, '2012-08-09', 35, 2, 'dfdsfds', 0, 0, 0, 0, 0, '2012-08-09');
 
 -- --------------------------------------------------------
 

@@ -12,7 +12,7 @@ if($_GET['op']==transaksi){
 }
 if($_GET['act'] == "get")
 {
-	$sql = "select * from transaksi where id_transaksi = '".$_GET["id_transaksi"]."'";	
+	$sql = "select * from transaksi where idtransaksi = '".$_GET["idtransaksi"]."'";	
 	$result = mysql_query($sql);	
 	$nbrows = mysql_num_rows($result);
 	$arr = array();
@@ -21,8 +21,8 @@ if($_GET['act'] == "get")
 			$rec['tglmasuk']=codeDate($rec['tglmasuk']);
                         $rec['tglselesai']=codeDate($rec['tglselesai']);
 			$arr = $rec;
-                        $a = $arr['id_grouptr'];
-                        $sqla = mysql_query("SELECT nm_grouptr FROM grouptransaksi WHERE id_grouptr='".$a."'");
+                        $a = $arr['idgrouptr'];
+                        $sqla = mysql_query("SELECT nmgrouptr FROM grouptransaksi WHERE idgrouptr='".$a."'");
                         $nrows = mysql_num_rows($sqla);
                         $arrays = array();
                         if($nrows>0){
@@ -30,7 +30,7 @@ if($_GET['act'] == "get")
                                $arrays = $records;
                             }
                         }
-                        unset($arr['id_grouptr']);
+                        unset($arr['idgrouptr']);
                         if($arr['status'] == '1'){
                            $arr['status'] = 'Selesai';
                         }
@@ -44,7 +44,7 @@ if($_GET['act'] == "get")
                         else{
                             $arr['sudahbayar'] = 'Belum';
                         }
-                        $sql = mysql_query('SELECT infopemohon FROM pemohon WHERE idpemohon = '.$arr['id_pemohon'].' ');
+                        $sql = mysql_query('SELECT infopemohon FROM pemohon WHERE idpemohon = '.$arr['idpemohon'].' ');
                         $rows = mysql_num_rows($sql);
                         if($rows>0){
                            while($record = mysql_fetch_assoc($sql)){
@@ -71,11 +71,11 @@ else if($_GET['act'] == "edit")
                 $idpemohon = $rec['id'];
             }
         }
-        $sql = mysql_query("SELECT id_grouptr FROM grouptransaksi WHERE nm_grouptr = '".$_POST['nm_grouptr']."'");
+        $sql = mysql_query("SELECT idgrouptr FROM grouptransaksi WHERE nmgrouptr = '".$_POST['nmgrouptr']."'");
         $nbrows = mysql_num_rows($sql);
         if($nbrows > 0){
             while($rec = mysql_fetch_array($sql)){
-                $idgrouptr = $rec['id_grouptr'];
+                $idgrouptr = $rec['idgrouptr'];
             }
         }
         $status = $_POST['status'];
@@ -92,9 +92,9 @@ else if($_GET['act'] == "edit")
         else{
             $sudahbayar = 0;
         }
-        $sql = "update transaksi set tglmasuk = '".$_POST["tglmasuk"]."',id_pemohon = '".$idpemohon."',id_grouptr ='".$idgrouptr."',
+        $sql = "update transaksi set tglmasuk = '".$_POST["tglmasuk"]."',idpemohon = '".$idpemohon."',idgrouptr ='".$idgrouptr."',
             judul='".$_POST["judul"]."',jmlberkas='".$_POST["jmlberkas"]."', status='".$status."',jmlberkasselesai='".$_POST["jmlberkasselesai"]."',harga='".$_POST["harga"]."',sudahbayar='".$sudahbayar."',
-                tglselesai='".$_POST["tglselesai"]."' where id_transaksi='".$_POST["id_transaksi"]."'";	
+                tglselesai='".$_POST["tglselesai"]."' where idtransaksi='".$_POST["idtransaksi"]."'";	
 	mysql_query($sql) or die(mysql_error());	
 	echo "{success:true}";
 
@@ -111,11 +111,11 @@ else if($_GET['act'] == "add")
                 $idpemohon = $rec['id'];
             }
         }
-        $sql = mysql_query("SELECT id_grouptr FROM grouptransaksi WHERE nm_grouptr = '".$_POST['nm_grouptr']."'");
+        $sql = mysql_query("SELECT idgrouptr FROM grouptransaksi WHERE nmgrouptr = '".$_POST['nmgrouptr']."'");
         $nbrows = mysql_num_rows($sql);
         if($nbrows > 0){
             while($rec = mysql_fetch_array($sql)){
-                $idgrouptr = $rec['id_grouptr'];
+                $idgrouptr = $rec['idgrouptr'];
             }
         }
         $status = $_POST['status'];
@@ -134,7 +134,7 @@ else if($_GET['act'] == "add")
         }
           
       $str="'".implode("','",$f)."'";
-            $sql_query = mysql_query("INSERT INTO transaksi(`id_transaksi`,`tglmasuk`,`judul`,`jmlberkas`,`jmlberkasselesai`,`harga`,`tglselesai`,`id_grouptr`,`id_pemohon`,`status`,`sudahbayar`) VALUES('null',".$str.",".$idgrouptr.",".$idpemohon.",".$status.",".$sudahbayar.")");
+            $sql_query = mysql_query("INSERT INTO transaksi(`idtransaksi`,`tglmasuk`,`judul`,`jmlberkas`,`jmlberkasselesai`,`harga`,`tglselesai`,`idgrouptr`,`idpemohon`,`status`,`sudahbayar`) VALUES('null',".$str.",".$idgrouptr.",".$idpemohon.",".$status.",".$sudahbayar.")");
             if ($sql_query)
                     {
                     echo "{success:true}";
@@ -148,7 +148,7 @@ else if($_GET['act'] == "add")
 
 else if(isset($_POST["del"]))
 {
-		$sql = "delete from transaksi where id_transaksi ='".$_POST["del"]."'";	
+		$sql = "delete from transaksi where idtransaksi ='".$_POST["del"]."'";	
 		mysql_query($sql) or die(mysql_error());
 		mysql_close();
 }
@@ -159,7 +159,7 @@ $tipe1 = $_POST['tipedata1'];
 $data1 = $_POST['data1'];
 $tipe2 = $_POST['tipedata2'];
 $data2 = $_POST['data2'];
-   $query = "SELECT * FROM transaksi WHERE id_grouptr LIKE '%".$idgroup."%'";
+   $query = "SELECT * FROM transaksi WHERE idgrouptr LIKE '%".$idgroup."%'";
    if($data1 != ''){
       $query .= " AND ".$tipe1." LIKE '%".$data1."%'";
    };
@@ -189,8 +189,8 @@ else if($_GET['act'] == "show"){
 			$rec['tglmasuk']=codeDate($rec['tglmasuk']);
                         $rec['tglselesai']=codeDate($rec['tglselesai']);
 			$arr = $rec;
-                        $a = $arr['id_grouptr'];
-                        $sqla = mysql_query("SELECT nm_grouptr FROM grouptransaksi WHERE id_grouptr='".$a."'");
+                        $a = $arr['idgrouptr'];
+                        $sqla = mysql_query("SELECT nmgrouptr FROM grouptransaksi WHERE idgrouptr='".$a."'");
                         $nrows = mysql_num_rows($sqla);
                         $arrays = array();
                         if($nrows>0){
@@ -198,7 +198,7 @@ else if($_GET['act'] == "show"){
                                $arrays = $records;
                             }
                         }
-                        unset($arr['id_grouptr']);
+                        unset($arr['idgrouptr']);
                         if($arr['status'] == '1'){
                            $arr['status'] = 'Selesai';
                         }
@@ -212,7 +212,7 @@ else if($_GET['act'] == "show"){
                         else{
                             $arr['sudahbayar'] = 'Belum';
                         }
-                        $sql = mysql_query('SELECT infopemohon FROM pemohon WHERE idpemohon = '.$arr['id_pemohon'].' ');
+                        $sql = mysql_query('SELECT infopemohon FROM pemohon WHERE idpemohon = '.$arr['idpemohon'].' ');
                         $rows = mysql_num_rows($sql);
                         if($rows>0){
                            while($record = mysql_fetch_assoc($sql)){
@@ -236,7 +236,7 @@ function datagroup() {
     $result = mysql_query($sql) or die (mysql_error());
     $i= 0;
     while($r=mysql_fetch_array($result)) {
-        $gp[$i] = $r['nm_grouptr'];
+        $gp[$i] = $r['nmgrouptr'];
         $i++;
     } 
     return $gp;

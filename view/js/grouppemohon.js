@@ -1,6 +1,6 @@
-var nm_groppemohon;       // this will be our columnmodel
-var id_grouppemohon;
-var pb_grouppemohon;
+var nmgroppemohon;       // this will be our columnmodel
+var idgrouppemohon;
+var pbgrouppemohon;
  
 Ext.onReady(function(){
   Ext.QuickTips.init();
@@ -13,7 +13,7 @@ PemohonDataStore = new Ext.data.Store({
             }),
             baseParams:
 		{
-		    orderby:'id_grouppemohon',
+		    orderby:'idgrouppemohon',
                     sort:'DESC'
 	  
 	    }, // this parameter asks for listing
@@ -23,11 +23,11 @@ PemohonDataStore = new Ext.data.Store({
         totalProperty: 'total',
         id: 'id'
       },[
-        {name: 'id_grouppemohon', type: 'int', mapping: 'id_grouppemohon'},
-        {name: 'nm_grouppemohon', type: 'string', mapping: 'nm_grouppemohon'},
-        {name: 'pb_grouppemohon', type: 'string', mapping: 'pb_grouppemohon'}
+        {name: 'idgrouppemohon', type: 'int', mapping: 'idgrouppemohon'},
+        {name: 'nmgrouppemohon', type: 'string', mapping: 'nmgrouppemohon'},
+        {name: 'pbgrouppemohon', type: 'string', mapping: 'pbgrouppemohon'}
       ]),
-      sortInfo:{field: 'id_grouppemohon', direction: "ASC"}
+      sortInfo:{field: 'idgrouppemohon', direction: "ASC"}
     });
     
      PemohonDataStore.load();
@@ -36,18 +36,18 @@ PemohonDataStore = new Ext.data.Store({
 //        {
 //        header: 'ID Group Pemohon',
 //        readOnly: true,
-//        dataIndex: 'id_grouppemohon', // this is where the mapped name is important!
+//        dataIndex: 'idgrouppemohon', // this is where the mapped name is important!
 //        width: 150,
 //        hidden: false
 //      },
       {
         header: 'Nama Group Pemohon',
-        dataIndex: 'nm_grouppemohon',
+        dataIndex: 'nmgrouppemohon',
         width: 150,
         hidden: false
       },{
         header: 'Status',
-        dataIndex: 'pb_grouppemohon',
+        dataIndex: 'pbgrouppemohon',
         width: 150,
         readOnly: true                     // we don't necessarily want to see this...
       }]
@@ -80,12 +80,12 @@ PemohonDataStore = new Ext.data.Store({
             xtype: 'textfield',
             fieldLabel: 'Nama Group',			
 			anchor: '80%',
-			name: 'f[nm_grouppemohon]'
+			name: 'f[nmgrouppemohon]'
         },
         {
             xtype: 'combo',
             fieldLabel: 'Status',
-            name: 'f[pb_grouppemohon]',
+            name: 'f[pbgrouppemohon]',
             anchor: '80%',
             store: new Ext.data.SimpleStore({
                     data: [
@@ -179,24 +179,24 @@ PemohonDataStore = new Ext.data.Store({
 		reader: new Ext.data.JsonReader ({
 			root: 'results',
 			totalProperty: 'total',
-			id: 'id_grouppemohon',
+			id: 'idgrouppemohon',
 			fields: [
-				'id_grouppemohon','nm_grouppemohon','pb_grouppemohon'
+				'idgrouppemohon','nmgrouppemohon','pbgrouppemohon'
 			]
 		}),
         items: 
 		[
 		new Ext.form.Hidden
 		({
-			name: 'id_grouppemohon'					
+			name: 'idgrouppemohon'					
 		}),
 		
 	{
             xtype: 'textfield',
             fieldLabel: 'Nama Group',			
 			anchor: '80%',
-			name: 'nm_grouppemohon',
-                        id: 'nm_grouppemohon'
+			name: 'nmgrouppemohon',
+                        id: 'nmgrouppemohon'
 			
         },
 	{
@@ -204,13 +204,13 @@ PemohonDataStore = new Ext.data.Store({
             fieldLabel: 'Status Group',			
             anchor: '80%',
             store: ['aktif','tidak aktif'],
-            displayField: 'pb_grouppemohon',
+            displayField: 'pbgrouppemohon',
             typeAhead: true,
             mode: 'local',
             triggerAction: 'all',
             forceSelection: true,
             selectOnFocus:true,
-            name: 'pb_grouppemohon'
+            name: 'pbgrouppemohon'
         }			
 		],
 		
@@ -270,7 +270,7 @@ PemohonDataStore = new Ext.data.Store({
 				var rec = m[i];
 				if(rec){
 					PemohonDataStore.load({
-						params:{del:rec.get("id_grouppemohon"),start:0,limit:10},
+						params:{del:rec.get("idgrouppemohon"),start:0,limit:10},
 						callback: function(){	
 						}
 					});store.remove(rec);
@@ -333,9 +333,9 @@ PemohonDataStore = new Ext.data.Store({
                             // Cause the datastore to do another query : 
                              PemohonDataStore.baseParams = {
                                 act: 'cari',
-                                //id_grouppemohon: SearchIdGroup.getValue(),
-                                nm_grouppemohon : SearchNmGroup.getValue(),
-                                pb_grouppemohon : SearchPbGroup.getValue()
+                                //idgrouppemohon: SearchIdGroup.getValue(),
+                                nmgrouppemohon : SearchNmGroup.getValue(),
+                                pbgrouppemohon : SearchPbGroup.getValue()
                                     };
                             // Cause the datastore to do another query :
                             PemohonDataStore.reload();
@@ -406,7 +406,7 @@ PemohonDataStore = new Ext.data.Store({
 					 var m = EditorGrid.getSelectionModel().getSelections();
 					 if(m.length > 0)
 					 {
-					    Edit.getForm().load({url:'controller/grouppemohon.php?act=get&id_grouppemohon='+ m[0].get('id_grouppemohon'), waitMsg:'Loading'});
+					    Edit.getForm().load({url:'controller/grouppemohon.php?act=get&idgrouppemohon='+ m[0].get('idgrouppemohon'), waitMsg:'Loading'});
 						EditForm.show();			 
 					 }
 					 else

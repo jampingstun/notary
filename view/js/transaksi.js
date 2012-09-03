@@ -1,7 +1,7 @@
-var id_transaksi;         // this will be our datastore
+var idtransaksi;         // this will be our datastore
 var tglmasuk;       // this will be our columnmodel
-var id_pemohon;
-var id_grouptr;
+var idpemohon;
+var idgrouptr;
 var judul;
 var jmlberkas;
 var status;
@@ -22,7 +22,7 @@ PemohonDataStore = new Ext.data.Store({
             }),
             baseParams:
 		{
-		    orderby:'id_transaksi',
+		    orderby:'idtransaksi',
                     sort:'DESC'
 	  
 	    }, // this parameter asks for listing
@@ -32,10 +32,10 @@ PemohonDataStore = new Ext.data.Store({
         totalProperty: 'total',
         id: 'id'
       },[ 
-        {name: 'id_transaksi', type: 'int', mapping: 'id_transaksi'},
+        {name: 'idtransaksi', type: 'int', mapping: 'idtransaksi'},
         {name: 'tglmasuk', type: 'string', mapping: 'tglmasuk'},
         {name: 'noktp', type: 'int', mapping: 'noktp'},
-        {name: 'nm_grouptr', type: 'string', mapping: 'nm_grouptr'},
+        {name: 'nmgrouptr', type: 'string', mapping: 'nmgrouptr'},
         {name: 'judul', type: 'string', mapping: 'judul'},
         {name: 'jmlberkas', type: 'int', mapping: 'jmlberkas'},
         {name: 'status', type: 'string', mapping: 'status'},
@@ -44,7 +44,7 @@ PemohonDataStore = new Ext.data.Store({
         {name: 'sudahbayar', type: 'string', mapping: 'sudahbayar'},
         {name: 'tglselesai', type: 'string', mapping: 'tglselesai'}
       ]),
-      sortInfo:{field: 'id_transaksi', direction: "ASC"}
+      sortInfo:{field: 'idtransaksi', direction: "ASC"}
     });
      PemohonDataStore.load();
     var ComboDataStore = new Ext.data.Store({
@@ -58,11 +58,11 @@ PemohonDataStore = new Ext.data.Store({
           totalProperty: 'total'
       },
       [
-        {name: 'id_grouptr', type: 'int', mapping: 'id_grouptr'},
-        {name: 'nm_grouptr', type: 'string', mapping: 'nm_grouptr'},
-        {name: 'pb_grouptr', type: 'string', mapping: 'pb_grouptr'},  
+        {name: 'idgrouptr', type: 'int', mapping: 'idgrouptr'},
+        {name: 'nmgrouptr', type: 'string', mapping: 'nmgrouptr'},
+        {name: 'pbgrouptr', type: 'string', mapping: 'pbgrouptr'},  
       ]),
-      sortInfo:{field: 'id_grouptr', direction: "ASC"}
+      sortInfo:{field: 'idgrouptr', direction: "ASC"}
   });
   ComboDataStore.load();
   
@@ -79,7 +79,7 @@ PemohonDataStore = new Ext.data.Store({
         totalProperty: 'total'
       },[ 
         {name: 'idpemohon', type: 'int', mapping: 'idpemohon'},
-        {name: 'nm_grouppemohon', type: 'string', mapping: 'nm_grouppemohon'},
+        {name: 'nmgrouppemohon', type: 'string', mapping: 'nmgrouppemohon'},
         {name: 'tgldaftarpemohon', type: 'string', mapping: 'tgldaftarpemohon'},
         {name: 'noktp', type: 'string', mapping: 'noktp'},
         {name: 'pbpemohon', type: 'string', mapping: 'pbpemohon'}
@@ -106,7 +106,7 @@ PemohonDataStore = new Ext.data.Store({
           })
       },{
         header: 'Group Transaksi',
-        dataIndex: 'nm_grouptr',
+        dataIndex: 'nmgrouptr',
         width: 120,
         readOnly: true                     // we don't necessarily want to see this...
       },{
@@ -197,14 +197,14 @@ PemohonDataStore = new Ext.data.Store({
             store: ComboDataStore,
             local: true,
             anchor: '80%',
-            displayField: 'nm_grouptr',
+            displayField: 'nmgrouptr',
             typeAhead: true,
             mode: 'local',
             triggerAction: 'all',
             forceSelection: true,
             selectOnFocus:true,
             emptyText: 'Pilih Group ...',
-            name: 'nm_grouptr'
+            name: 'nmgrouptr'
         },{
             xtype: 'textfield',
             fieldLabel: 'Judul',			
@@ -342,16 +342,16 @@ PemohonDataStore = new Ext.data.Store({
 		reader: new Ext.data.JsonReader ({
 			root: 'results',
 			totalProperty: 'total',
-			id: 'id_pemohon',
+			id: 'idpemohon',
 			fields: [
-				'id_transaksi','tglmasuk','noktp','nm_grouptr','judul','jmlberkas','status','jmlberkasselesai','harga','sudahbayar','tglselesai'
+				'idtransaksi','tglmasuk','noktp','nmgrouptr','judul','jmlberkas','status','jmlberkasselesai','harga','sudahbayar','tglselesai'
 			]
 		}),
         items: 
 		[
 		new Ext.form.Hidden 
 		({
-			name: 'id_transaksi'					
+			name: 'idtransaksi'					
 		}),
         {xtype: 'datefield',
             fieldLabel: 'Tanggal Masuk',
@@ -381,14 +381,14 @@ PemohonDataStore = new Ext.data.Store({
             store: ComboDataStore,
             local: true,
             anchor: '80%',
-            displayField: 'nm_grouptr',
+            displayField: 'nmgrouptr',
             typeAhead: true,
             mode: 'local',
             triggerAction: 'all',
             forceSelection: true,
             selectOnFocus:true,
             emptyText: 'Pilih Group ...',
-            name: 'nm_grouptr'
+            name: 'nmgrouptr'
         },{
             xtype: 'textfield',
             fieldLabel: 'Judul',			
@@ -511,7 +511,7 @@ PemohonDataStore = new Ext.data.Store({
 				var rec = m[i];
 				if(rec){
 					PemohonDataStore.load({
-						params:{del:rec.get("id_transaksi"),start:0,limit:10},
+						params:{del:rec.get("idtransaksi"),start:0,limit:10},
 						callback: function(){	
 						}
 					});store.remove(rec);
@@ -663,7 +663,7 @@ PemohonDataStore = new Ext.data.Store({
 					 var m = EditorGrid.getSelectionModel().getSelections();
 					 if(m.length > 0)
 					 {
-					    Edit.getForm().load({url:'controller/transaksi.php?act=get&id_transaksi='+ m[0].get('id_transaksi'), waitMsg:'Loading'});
+					    Edit.getForm().load({url:'controller/transaksi.php?act=get&idtransaksi='+ m[0].get('idtransaksi'), waitMsg:'Loading'});
 						EditForm.show();			 
 					 }
 					 else

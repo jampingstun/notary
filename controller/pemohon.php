@@ -20,7 +20,7 @@ if($_GET["act"] == "get")
 		while($rec = mysql_fetch_assoc($result)){
                         $arr = $rec;
                         $a = $arr['idgrouppemohon'];
-                        $sqla = mysql_query("SELECT nm_grouppemohon FROM grouppemohon WHERE id_grouppemohon='".$a."'");
+                        $sqla = mysql_query("SELECT nmgrouppemohon FROM grouppemohon WHERE idgrouppemohon='".$a."'");
                         $rows = mysql_num_rows($sqla);
                         if($rows>0){
                             while($record = mysql_fetch_array($sqla)){
@@ -48,7 +48,7 @@ if($_GET["act"] == "get")
 else if($_GET["act"] == "edit")
 {
 	$f = $_POST['f'];
-        $idgrouppemohon = $_POST['nm_grouppemohon'];
+        $idgrouppemohon = $_POST['nmgrouppemohon'];
         $pbpemohon = $_POST['pbpemohon'];
         $idpemohon = $_POST['idpemohon'];
         if($pbpemohon == 'Aktif'){
@@ -57,11 +57,11 @@ else if($_GET["act"] == "edit")
             else{
                 $pbpemohon = '0';
             }
-        $sqla = mysql_query("SELECT id_grouppemohon FROM grouppemohon WHERE nm_grouppemohon='".$idgrouppemohon."'");
+        $sqla = mysql_query("SELECT idgrouppemohon FROM grouppemohon WHERE nmgrouppemohon='".$idgrouppemohon."'");
         $row = mysql_num_rows($sqla);
         if($row>0){
         while($recs = mysql_fetch_array($sqla)){
-                $arr = $recs['id_grouppemohon'];
+                $arr = $recs['idgrouppemohon'];
                     }
         }
         $j = json_encode($f);
@@ -93,11 +93,11 @@ else if($_GET['act'] == "add")
             else{
                 $pbpemohon = '0';
             }
-    $sqla = mysql_query("SELECT id_grouppemohon FROM grouppemohon WHERE nm_grouppemohon='".$idgrouppemohon."'");
+    $sqla = mysql_query("SELECT idgrouppemohon FROM grouppemohon WHERE nmgrouppemohon='".$idgrouppemohon."'");
     $row = mysql_num_rows($sqla);
     if($row>0){
     while($recs = mysql_fetch_array($sqla)){
-            $arr = $recs['id_grouppemohon'];
+            $arr = $recs['idgrouppemohon'];
                 }
     }
     $j = json_encode($f);
@@ -153,7 +153,7 @@ if (mysql_num_rows($data)>0) {
 		while($rec = mysql_fetch_assoc($result)){
                         $arr = $rec;
                         $a = $arr['idgrouppemohon'];
-                        $sqla = mysql_query("SELECT nm_grouppemohon FROM grouppemohon WHERE id_grouppemohon='".$a."'");
+                        $sqla = mysql_query("SELECT nmgrouppemohon FROM grouppemohon WHERE idgrouppemohon='".$a."'");
                         $rows = mysql_num_rows($sqla);
                         if($rows>0){
                             while($record = mysql_fetch_array($sqla)){
@@ -186,7 +186,7 @@ else if($_GET['act'] == "show"){
 		while($rec = mysql_fetch_assoc($result)){
                         $arr = $rec;
                         $a = $arr['idgrouppemohon'];
-                        $sqla = mysql_query("SELECT nm_grouppemohon FROM grouppemohon WHERE idgrouppemohon='".$a."'");
+                        $sqla = mysql_query("SELECT nmgrouppemohon FROM grouppemohon WHERE idgrouppemohon='".$a."'");
                         $rows = mysql_num_rows($sqla);
                         $array = array();
                         if($rows>0){
@@ -218,7 +218,7 @@ function datagroup() {
     $result = mysql_query($sql) or die (mysql_error());
     $i= 0;
     while($r=mysql_fetch_array($result)) {
-        $gp[$i] = $r['nm_grouppemohon'];
+        $gp[$i] = $r['nmgrouppemohon'];
         $i++;
     } 
     return $gp;

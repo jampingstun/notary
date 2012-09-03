@@ -35,7 +35,7 @@ ob_start();
                 $idtransaksicetak = explode(',',$_GET['idtransaksi']);
                 for($i=0;$i<sizeof($idtransaksicetak);$i++) {
                    $result = mysql_query("SELECT * FROM grouptransaksi gt JOIN transaksi t 
-                                        USING(id_grouptr) JOIN pemohon p USING(idpemohon) WHERE t.id_transaksi='{$idtransaksicetak[$i]}'");
+                                        USING(id_grouptr) JOIN pemohon p USING(idpemohon) WHERE t.idtransaksi='{$idtransaksicetak[$i]}'");
                     if (mysql_num_rows($result)>0 or die(mysql_error())) {
                         $info = array();
                         $j = $i + 1;
@@ -45,7 +45,7 @@ ob_start();
                             echo '<td>'.$j.'</td>';
                             echo '<td>'.$row['tglmasuk'].'</td>';
                             echo '<td>'.$info['noktp'].'</td>';
-                            echo '<td>'.$row['nm_grouptr'].'</td>';
+                            echo '<td>'.$row['nmgrouptr'].'</td>';
                             echo '<td>'.$row['judul'].'</td>';
                             echo '<td>'.$row['jmlberkas'].'</th>';
                             echo '<td>'.$row['status'].'</td>';

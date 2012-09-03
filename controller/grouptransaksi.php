@@ -11,7 +11,7 @@ if($_GET['op']==grouptransaksi){
 }
 if($_GET['act'] == "get")
 {
-	$sql = "select * from grouptransaksi where id_grouptr = '".$_GET["id_grouptr"]."'";	
+	$sql = "select * from grouptransaksi where idgrouptr = '".$_GET["idgrouptr"]."'";	
 	$result = mysql_query($sql);	
 	$rows = mysql_num_rows($result);
 	$arr = array();
@@ -20,11 +20,11 @@ if($_GET['act'] == "get")
 		$arr[] = $obj;  
 	}
             for($i=0;$i<count($arr);$i++){
-                if($arr[$i][pb_grouptr]==1){
-                   $arr[$i][pb_grouptr] = 'Aktif'; 
+                if($arr[$i][pbgrouptr]==1){
+                   $arr[$i][pbgrouptr] = 'Aktif'; 
                 }
                 else{
-                    $arr[$i][pb_grouptr] = 'Tidak Aktif';
+                    $arr[$i][pbgrouptr] = 'Tidak Aktif';
                 }
                 }
 		$jsonresult = json_encode($arr);
@@ -33,14 +33,14 @@ if($_GET['act'] == "get")
 
 else if($_GET['act'] == "edit")
 {
-        $pbgroup = $_POST['pb_grouptr'];
+        $pbgroup = $_POST['pbgrouptr'];
         if($pbgroup == 'aktif'){
             $pbgroup = '1';
         }
         else{
             $pbgroup = '0';
         }
-	$sql = "update grouptransaksi set nm_grouptr = '".$_POST["nm_grouptr"]."',pb_grouptr ='".$pbgroup."'where id_grouptr='".$_POST["id_grouptr"]."'";
+	$sql = "update grouptransaksi set nmgrouptr = '".$_POST["nmgrouptr"]."',pbgrouptr ='".$pbgroup."'where idgrouptr='".$_POST["idgrouptr"]."'";
         mysql_query($sql) or die(mysql_error());	
 	echo "{success:true}";
 
@@ -52,15 +52,15 @@ else if($_GET['act'] == "add")
     
           $f = $_POST['f'];
           
-            $pb = $f['pb_grouptr'];
+            $pb = $f['pbgrouptr'];
             if ($pb == 'Aktif'){
-                $f['pb_grouptr'] = '1';
+                $f['pbgrouptr'] = '1';
             }
             else{
-                $f['pb_grouptr'] = '0';
+                $f['pbgrouptr'] = '0';
             }
           $str="'".implode("','",$f)."'";
-          $sql=mysql_query("insert into grouptransaksi(`id_grouptr`,`nm_grouptr`,`pb_grouptr`) values('null',".$str.")");
+          $sql=mysql_query("insert into grouptransaksi(`idgrouptr`,`nmgrouptr`,`pbgrouptr`) values('null',".$str.")");
           if ($sql)
                     {
                     echo "{success:true}";
@@ -73,16 +73,16 @@ else if($_GET['act'] == "add")
 
 else if(isset($_POST["del"]))
 {
-		$sql = "delete from grouptransaksi where id_grouptr ='".$_POST["del"]."'";	
+		$sql = "delete from grouptransaksi where idgrouptr ='".$_POST["del"]."'";	
 		mysql_query($sql) or die(mysql_error());
 		mysql_close();
 }
 
 else if((isset($_POST['act'])) == "cari")
 {
-   $idgroup = $_POST['id_grouptransaksi'];
-   $nmgroup = $_POST['nm_grouptransaksi'];
-   $pbgroup = $_POST['pb_grouptransaksi'];
+   $idgroup = $_POST['idgrouptransaksi'];
+   $nmgroup = $_POST['nmgrouptransaksi'];
+   $pbgroup = $_POST['pbgrouptransaksi'];
    
    if ($pbgroup == 'Aktif'){
        $pbgroup = '1';
@@ -93,12 +93,12 @@ else if((isset($_POST['act'])) == "cari")
    else{
        $pbgroup = '';
    }
-   $query = "SELECT * FROM grouptransaksi WHERE id_grouptr LIKE '%".$idgroup."%'";
+   $query = "SELECT * FROM grouptransaksi WHERE idgrouptr LIKE '%".$idgroup."%'";
    if($nmgroup != ''){
-      $query .= " AND nm_grouptr LIKE '%".$nmgroup."%'";
+      $query .= " AND nmgrouptr LIKE '%".$nmgroup."%'";
    };
    if($pbgroup != ''){
-      $query .= " AND pb_grouptr = '".$pbgroup."'";
+      $query .= " AND pbgrouptr = '".$pbgroup."'";
    };
  
    $result = mysql_query($query);
@@ -109,11 +109,11 @@ else if((isset($_POST['act'])) == "cari")
       $arr[] = $rec;
     }
             for($i=0;$i<count($arr);$i++){
-                if($arr[$i][pb_grouptr]==1){
-                   $arr[$i][pb_grouptr] = 'Aktif'; 
+                if($arr[$i][pbgrouptr]==1){
+                   $arr[$i][pbgrouptr] = 'Aktif'; 
                 }
                 else{
-                    $arr[$i][pb_grouptr] = 'Tidak Aktif';
+                    $arr[$i][pbgrouptr] = 'Tidak Aktif';
                 }
                 }
     $jsonresult = json_encode($arr);
@@ -132,11 +132,11 @@ else if ($_GET['act'] == 'show') {
 			$arr[] = $rec;
 		}
                 for($i=0;$i<count($arr);$i++){
-                if($arr[$i][pb_grouptr]==1){
-                   $arr[$i][pb_grouptr] = 'Aktif'; 
+                if($arr[$i][pbgrouptr]==1){
+                   $arr[$i][pbgrouptr] = 'Aktif'; 
                 }
                 else{
-                    $arr[$i][pb_grouptr] = 'Tidak Aktif';
+                    $arr[$i][pbgrouptr] = 'Tidak Aktif';
                 }
                 }
 		$jsonresult = json_encode($arr);
