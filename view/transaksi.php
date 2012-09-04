@@ -40,7 +40,7 @@
                     <div class="control-group">
                     <label class="control-label">No KTP</label>
                     <div class="controls">
-                    <input type="text" class="span3" style="margin: 0 auto;" name="noktp" data-provide="typeahead" data-items="4" data-source="<?php
+                    <input type="text" name="noktp" data-provide="typeahead" data-items="4" data-source="<?php
                         $group = addQuote();
                         echo htmlentities($group);
                         ?>">
@@ -80,6 +80,7 @@
                     
             </div>
         </div>
+            </div>
             </div>
                 
                 <div class="page-header">

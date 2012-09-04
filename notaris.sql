@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Sep 03, 2012 at 06:07 
+-- Generation Time: Sep 04, 2012 at 09:45 AM
 -- Server version: 5.5.8
 -- PHP Version: 5.3.5
 
@@ -58,6 +58,29 @@ CREATE TABLE IF NOT EXISTS `grouptransaksi` (
 
 INSERT INTO `grouptransaksi` (`idgrouptr`, `nmgrouptr`, `pbgrouptr`) VALUES
 (2, 'Vidusia', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifikasi`
+--
+
+CREATE TABLE IF NOT EXISTS `notifikasi` (
+  `idnotifikasi` int(11) NOT NULL AUTO_INCREMENT,
+  `konfigurasi` int(11) NOT NULL,
+  PRIMARY KEY (`idnotifikasi`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=11 ;
+
+--
+-- Dumping data for table `notifikasi`
+--
+
+INSERT INTO `notifikasi` (`idnotifikasi`, `konfigurasi`) VALUES
+(1, 3),
+(7, 4),
+(8, 15),
+(9, 3),
+(10, 9);
 
 -- --------------------------------------------------------
 
