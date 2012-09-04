@@ -55,6 +55,13 @@
                             <li ><a href="?op=tgrouptransaksi" style="text-decoration: none"><i class="icon-tags"></i> &nbsp;Group Transaksi</a></li>                    
                         </ul>
                     </div>
+                    <li><a href="#" data-toggle="collapse" data-target="#Mgrup"><i class="icon-list-alt"></i>&nbsp;&nbsp;<b>Pemberitahuan</b></a></li>
+                    <div  style="background-color: #f5f5f5;   border: 1px solid #eee; border: 1px solid rgba(0, 0, 0, 0.05);" >    
+                        <ul id="Mgrup" class="submenu collapse in" style="list-style: none;">
+                            <li ><a href="?op=tnotifikasi" style="text-decoration: none"><i class="icon-tags"></i>&nbsp; Pemberitahuan</a></li>
+                            <li ><a href="?op=setnotifikasi" style="text-decoration: none"><i class="icon-tags"></i>&nbsp; Seting Pemberitahuan</a></li>                    
+                        </ul>
+                    </div>
                 </ul>
         </div>
         

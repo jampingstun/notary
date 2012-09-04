@@ -81,7 +81,7 @@
                     <label class="control-label">Tanggal Daftar</label>
                     <div class="controls">
                     <div class="input-append date" id="dp3" data-date="<?php echo date("Y-m-d") ?>" data-date-format="yyyy-mm-dd" onclick="datet()">
-                    <input class="span2" size="16" type="text" name="f[tgldaftar]" value="<?php echo date("Y-m-d") ?>">
+                    <input class="span2" size="16" type="text" name="tgldaftar" value="<?php echo date("Y-m-d") ?>">
                     <span class="add-on"><i class="icon-th"></i></span>
                     </div>
                      <script>

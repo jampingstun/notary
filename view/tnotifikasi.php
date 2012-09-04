@@ -1,11 +1,4 @@
 <html>
-    <body>
-        <div class="span9">
-            <div class="well" style="background-color: white;">
-               HOME
-            </div>
-        </div>
-        <html>
     <head>
 <link rel="stylesheet" type="text/css" href="ext-2.2/resources/css/ext-all.css"/>
 <script type="text/javascript" src="ext-2.2/adapter/ext/ext-base.js"></script>
@@ -56,8 +49,5 @@
 </body>
 
 </html>
-            </div><!--
--->   </div>
-<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-    </body>
-</html>
+
+
