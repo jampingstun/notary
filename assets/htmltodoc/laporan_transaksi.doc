@@ -11,12 +11,20 @@
             <thead>
                 <tr bgcolor=#CCCCCC>
                     <th>No</th>
-                    <th>Nama</th>
+                    <th>Tanggal Masuk</th>
+                    <th>No KTP Pemohon</th>
+                    <th>Group Transaksi</th>
+                    <th>Judul</th>
+                    <th>Jumlah Berkas</th>
                     <th>Status</th>
+                    <th>Jumlah Berkas Selesai</th>
+                    <th>Harga</th>
+                    <th>Sudah Bayar</th>
+                    <th>Tanggal Selesai</th>
                 </tr>
             </thead>
             <tbody>
-                <tr><td>1</td><td>UNY</td><td>Aktif</td></tr>            </tbody>
+                <tr><td>1</td><td>2012-08-09</td><td>123456789</td><td>Vidusia</td><td>dfdsfds</td><td>0</th><td>0</td><td>0</td><td>0</td><td>0</td><td>2012-08-09</td></tr>            </tbody>
         </table>
     
 </html>

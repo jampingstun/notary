@@ -11,9 +11,9 @@ ob_start();
 <html>
     <head><title></title></head>
     <body>
-        <table border="1" style="font-weight:normal">
+        <table border='1' cellpadding='0' cellspacing='0' style='border-collapse: collapse' bordercolor='#000000'>
             <thead>
-                <tr>
+                <tr bgcolor=#CCCCCC>
                     <th>No</th>
                     <th>Tanggal Masuk</th>
                     <th>No KTP Pemohon</th>
@@ -24,7 +24,7 @@ ob_start();
                     <th>Jumlah Berkas Selesai</th>
                     <th>Harga</th>
                     <th>Sudah Bayar</th>
-                    <th>Tanggal Selesai/th>
+                    <th>Tanggal Selesai</th>
                 </tr>
             </thead>
             <tbody>

@@ -31,8 +31,8 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 			$rec['tglmasuk']=codeDate($rec['tglmasuk']);
                         $rec['tglselesai']=codeDate($rec['tglselesai']);
 			$arr = $rec;
-                        $a = $arr['id_grouptr'];
-                        $sqla = mysql_query("SELECT nm_grouptr FROM grouptransaksi WHERE id_grouptr='".$a."'");
+                        $a = $arr['idgrouptr'];
+                        $sqla = mysql_query("SELECT nmgrouptr FROM grouptransaksi WHERE idgrouptr='".$a."'");
                         $nrows = mysql_num_rows($sqla);
                         $arrays = array();
                         if($nrows>0){
@@ -40,7 +40,7 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
                                $arrays = $records;
                             }
                         }
-                        unset($arr['id_grouptr']);
+                        unset($arr['idgrouptr']);
                         if($arr['status'] == '1'){
                            $arr['status'] = 'Selesai';
                         }
@@ -54,7 +54,7 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
                         else{
                             $arr['sudahbayar'] = 'Belum';
                         }
-                        $sql = mysql_query('SELECT infopemohon FROM pemohon WHERE idpemohon = '.$arr['id_pemohon'].' ');
+                        $sql = mysql_query('SELECT infopemohon FROM pemohon WHERE idpemohon = '.$arr['idpemohon'].' ');
                         $rows = mysql_num_rows($sql);
                         if($rows>0){
                            while($record = mysql_fetch_assoc($sql)){
@@ -77,7 +77,7 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
     $result = mysql_query($sql) or die (mysql_error());
     $i= 0;
     while($r=mysql_fetch_array($result)) {
-        $gp[$i] = $r['nm_grouptr'];
+        $gp[$i] = $r['nmgrouptr'];
         $i++;
     } 
     return $gp;
@@ -85,7 +85,7 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 
 if(isset($_POST["del"]))
 {
-		$sql = "update transaksi set status='1' where id_transaksi='".$_POST["del"]."'";	
+		$sql = "update transaksi set status='1' where idtransaksi='".$_POST["del"]."'";	
 		mysql_query($sql) or die(mysql_error());
                 mysql_close();
 }

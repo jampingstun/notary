@@ -274,24 +274,26 @@ PemohonDataStore = new Ext.data.Store({
 			var m = EditorGrid.getSelectionModel().getSelections();
 			var store = EditorGrid.getStore();
 			var abc = new Array();
+                        var te = '0';
 			for(var i=0; i< m.length; i++){
 				var rec = m[i];
                                 abc.push(m[i].get("idgrouptr"));
-				if(rec){
-					
-				}
 			}
                         PemohonDataStore.load({
-						params:{prt:abc.toString(),start:0,limit:10},
-						callback: function(){
-							
-						}
-   
-					});
-                       window.open('/notary/assets/htmltodoc/laporan_pemohon.html');
-                       window.open('/notary/assets/htmltodoc/laporan_pemohon.doc');
-                                        
-			
+                                params:{prt:abc.toString()},
+                                callback: function(){
+                                    te = '1';
+                                    
+                                }
+                                
+                        });
+                        var si = setInterval(function() {
+                            if (te=='1') {
+                                window.location='assets/htmltodoc/laporan_grouptransaksi.doc';
+                                clearInterval(si);
+                                te=='0';
+                            }
+                        }, 10); 
 		}
 	}
         
@@ -451,17 +453,18 @@ PemohonDataStore = new Ext.data.Store({
 			},'-',
                         {
 				text:'Cetak',
-				iconCls:'book',
+				iconCls:'remove',
+                                tooltip:'Cetak data yang dipilih',
 				handler: function()
 				{
 					var m = EditorGrid.getSelectionModel().getSelections();
 					if(m.length > 0)
 					{
-						Ext.MessageBox.confirm('Konfirmasi', 'Apakah Anda Yakin Menghapus Field Ini?' , print)
+						Ext.MessageBox.confirm('Konfirmasi', 'Apakah Anda Yakin Mencetak Field Ini?' , prt);						
 					}
 					else
 					{
-						Ext.MessageBox.alert('Warning', 'Pilih Salah Satu Yang Mau Anda Hapus');
+						Ext.MessageBox.alert('Warning', 'Pilih Salah Satu Yang Mau Anda Cetak');
 					}
 				}
 			
