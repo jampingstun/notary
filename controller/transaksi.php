@@ -153,6 +153,11 @@ else if(isset($_POST["del"]))
 		mysql_close();
 }
 
+else if(isset($_POST["prt"]))
+{
+    header('Location: http://'.$_SERVER["SERVER_NAME"].'/notary/assets/htmltodoc/laporan_transaksi.php?idtransaksi='.$_POST["prt"]);
+}
+
 else if((isset($_POST['act'])) == "cari")
 {
 $tipe1 = $_POST['tipedata1'];

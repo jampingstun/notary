@@ -23,7 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr><td>1</td><td>UNY</td><td>0000-00-00</td><td>123456789</td><td>Test</td><td>Bantul</th><td>Bantul, 6-05-1992</td><td>Islam</td><td>Programmer</td><td>085729764034</td></tr><tr><td>2</td><td>UNY</td><td>0000-00-00</td><td>343543</td><td>gdfgfd</td><td>fdgdf</th><td>fgfd, fgfd</td><td>fgdf</td><td>fdgdf</td><td>fgfdg</td></tr><tr><td>3</td><td>UNY</td><td>0000-00-00</td><td>123</td><td></td><td></th><td>, </td><td></td><td></td><td></td></tr><tr><td>4</td><td>UNY</td><td>0000-00-00</td><td>24325325345</td><td>gdsgdsgdsg</td><td></th><td>, </td><td></td><td></td><td></td></tr>            </tbody>
+                <tr><td>1</td><td>UNY</td><td>0000-00-00</td><td>123456789</td><td>Test</td><td>Bantul</th><td>Bantul, 6-05-1992</td><td>Islam</td><td>Programmer</td><td>085729764034</td></tr><tr><td>2</td><td>UNY</td><td>0000-00-00</td><td>123</td><td></td><td></th><td>, </td><td></td><td></td><td></td></tr>            </tbody>
         </table>
     
 </html>

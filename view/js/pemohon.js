@@ -473,6 +473,7 @@ PemohonDataStore = new Ext.data.Store({
 			
 		}
 	}
+        
         function prt(btn)
 	{
 		if(btn == 'yes')
@@ -493,11 +494,13 @@ PemohonDataStore = new Ext.data.Store({
                                 }
                                 
                         });
-                        if (te=='1') {
-                            window.open('/notary/assets/htmltodoc/laporan_pemohon.doc');
-                        }
-                        
-                        
+                        var si = setInterval(function() {
+                            if (te=='1') {
+                                window.location='assets/htmltodoc/laporan_pemohon.doc';
+                                clearInterval(si);
+                                te=='0';
+                            }
+                        }, 10); 
 		}
 	}
         
@@ -659,16 +662,17 @@ PemohonDataStore = new Ext.data.Store({
                         {
 				text:'Cetak',
 				iconCls:'remove',
+                                tooltip:'Cetak data yang dipilih',
 				handler: function()
 				{
 					var m = EditorGrid.getSelectionModel().getSelections();
 					if(m.length > 0)
 					{
-						Ext.MessageBox.confirm('Konfirmasi', 'Apakah Anda Yakin Menghapus Field Ini?' , prt);						
+						Ext.MessageBox.confirm('Konfirmasi', 'Apakah Anda Yakin Mencetak Field Ini?' , prt);						
 					}
 					else
 					{
-						Ext.MessageBox.alert('Warning', 'Pilih Salah Satu Yang Mau Anda Hapus');
+						Ext.MessageBox.alert('Warning', 'Pilih Salah Satu Yang Mau Anda Cetak');
 					}
 				}
 			

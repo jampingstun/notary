@@ -138,8 +138,7 @@ else if(isset($_POST["del"]))
 }
 else if(isset($_POST["prt"]))
 {
-    header('Location: http://localhost/notary/assets/htmltodoc/laporan_pemohon.php?idpemohon='.$_POST["prt"]);
-    echo 'test';
+    header('Location: http://'.$_SERVER["SERVER_NAME"].'/notary/assets/htmltodoc/laporan_pemohon.php?idpemohon='.$_POST["prt"]);
 }
 		
                 

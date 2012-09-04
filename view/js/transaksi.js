@@ -520,6 +520,35 @@ PemohonDataStore = new Ext.data.Store({
 			
 		}
 	}
+  function prt(btn)
+	{
+		if(btn == 'yes')
+		{
+			var m = EditorGrid.getSelectionModel().getSelections();
+			var store = EditorGrid.getStore();
+			var abc = new Array();
+                        var te = '0';
+			for(var i=0; i< m.length; i++){
+				var rec = m[i];
+                                abc.push(m[i].get("idtransaksi"));
+			}
+                        PemohonDataStore.load({
+                                params:{prt:abc.toString()},
+                                callback: function(){
+                                    te = '1';
+                                    
+                                }
+                                
+                        });
+                        var si = setInterval(function() {
+                            if (te=='1') {
+                                window.location='assets/htmltodoc/laporan_transaksi.doc';
+                                clearInterval(si);
+                                te=='0';
+                            }
+                        }, 10); 
+		}
+	}
         
         function startAdvancedSearch(){
       // local vars
@@ -688,6 +717,25 @@ PemohonDataStore = new Ext.data.Store({
 					else
 					{
 						Ext.MessageBox.alert('Warning', 'Pilih Salah Satu Yang Mau Anda Hapus');
+					}
+				}
+			
+			},'-',
+                        
+                        {
+				text:'Cetak',
+				iconCls:'remove',
+                                tooltip:'Cetak data yang dipilih',
+				handler: function()
+				{
+					var m = EditorGrid.getSelectionModel().getSelections();
+					if(m.length > 0)
+					{
+						Ext.MessageBox.confirm('Konfirmasi', 'Apakah Anda Yakin Mencetak Field Ini?' , prt);						
+					}
+					else
+					{
+						Ext.MessageBox.alert('Warning', 'Pilih Salah Satu Yang Mau Anda Cetak');
 					}
 				}
 			
