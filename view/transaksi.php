@@ -94,14 +94,7 @@
                 </a>
               </div>
               <div id="collapse2" class="accordion-body collapse in">
-                <div class="accordion-inner">
-                    
-                    <div class="control-group">
-                    <label class="control-label">Harga</label>
-                    <div class="controls">
-                    <input type="text" class="input" value="<?php echo $f['nm']; ?>">
-                    </div>
-                    </div> 
+                <div class="accordion-inner"> 
                     
                     <div class="control-group">
                     <label class="control-label">Status</label>
@@ -122,7 +115,9 @@
                     <div class="control-group">
                     <label class="control-label">Harga</label>
                     <div class="controls">
-                    <input type="text" class="input" name="f[harga]">
+                    <div class="input-prepend">
+                    <span class="add-on">Rp</span><input class="span2" id="prependedInput" name="f[harga]" size="16" type="text">
+                    </div>
                     </div>
                     </div> 
                     

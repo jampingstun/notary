@@ -18,7 +18,7 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 	}
   }
   else if($_GET['act'] == 'grouptransaksi'){
-      $query = "SELECT * FROM grouptransaksi where pbgrouptransaksi='1'";
+      $query = "SELECT * FROM grouptransaksi where pbgrouptr='1'";
       $result = mysql_query($query);
       $nbrows = mysql_num_rows($result);
       if($nbrows>0){
