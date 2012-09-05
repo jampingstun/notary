@@ -27,6 +27,9 @@
     .search {
         background-image:url(ext-2.2/fam/application_go.png) !important;
     }
+    .filter {
+        background-image:url(ext-2.2/fam/filter.gif) !important;
+    }
 </style>
 </head>
 <body>
@@ -40,7 +43,9 @@
      Data Identitas Group Transaksi </a></p>
 <!--                    <small>Data Identitas Group Transaksi</small>-->
                 </div>
-                <br/>
+                
+               
+                
       <div id="dok"></div>
             </div>
         </div>

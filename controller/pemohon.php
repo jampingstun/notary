@@ -184,6 +184,48 @@ if (mysql_num_rows($data)>0) {
 	}
 }
 }
+else if((isset($_POST['act'])) == "filter")
+{
+$tipe1 = $_POST['tipedata1'];
+$data1 = $_POST['data1'];
+$sql = "SELECT * FROM tbl_index WHERE tipe='pemohon' and kode='".$tipe1."' and isi='".$data1."'";
+$data = mysql_query($sql) or die(mysql_error());
+if (mysql_num_rows($data)>0) {
+    while ($row = mysql_fetch_array($data)) {
+        $id = $row['id'];
+    }
+    $sql = "SELECT * FROM pemohon WHERE idpemohon='".$id."'";
+    $result = mysql_query($sql) or die(mysql_error());
+    $nbrows = mysql_num_rows($result);  
+	if($nbrows>0){
+		while($rec = mysql_fetch_assoc($result)){
+                        $arr = $rec;
+                        $a = $arr['idgrouppemohon'];
+                        $sqla = mysql_query("SELECT nmgrouppemohon FROM grouppemohon WHERE idgrouppemohon='".$a."'");
+                        $rows = mysql_num_rows($sqla);
+                        if($rows>0){
+                            while($record = mysql_fetch_array($sqla)){
+                               $array = $record;
+                            }
+                        }
+                        if($arr['pbpemohon'] == '1'){
+                           $arr['pbpemohon'] = 'Aktif';
+                        }
+                        else{
+                            $arr['pbpemohon'] = 'Tidak Aktif';
+                        }
+                        $info = json_decode($arr['infopemohon'], true);
+                        unset($arr['infopemohon']);
+                        $fusion = array_merge($arr,$info,$array);
+                        $ar[] = (json_encode($fusion));
+		}
+                $list = implode(",",$ar);
+		echo '({"total":"'.$nbrows.'","results":['.$list.']})';
+	} else {
+		echo '({"total":"0", "results":""})';
+	}
+}
+}
 else if($_GET['act'] == "show"){
      $query = "SELECT * FROM pemohon";
 	$result = mysql_query($query);
@@ -235,4 +277,10 @@ function codeDate ($date) {
 	$r = $tab[1]."/".$tab[2]."/".$tab[0];
 	return $r;
 }
- //
+
+function reverseDate ($date) {
+	$tab = explode ("-", $date);
+	$r = $tab[2]."/".$tab[1]."/".$tab[0];
+	return $r;
+}
+?>
