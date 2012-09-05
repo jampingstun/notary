@@ -53,7 +53,7 @@
                     <div class="control-group">
                     <label class="control-label" for="select01">Group Transaksi</label>
                     <div class="controls">
-                    <select name="nm_grouptr">
+                    <select name="nmgrouptr">
                         <?php
                         $group = datagroup();
                         foreach($group as $v) {
@@ -159,7 +159,7 @@
              <br/>
              <br/>
             <div class="form-actions">
-                <input type="submit" class="btn btn-primary" name="simpan" value="Simpan"/>
+                <input type="submit" class="btn btn-primary" name="simpan" value="simpan"/>
                     <a onclick="history.go(-1)" class="btn">Batal</a>
             </div>
             </div>
