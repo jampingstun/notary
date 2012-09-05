@@ -27,7 +27,9 @@
     .search {
         background-image:url(ext-2.2/fam/application_go.png) !important;
     }
-
+    .filter {
+        background-image:url(ext-2.2/fam/filter.gif) !important;
+    }
 </style>
 <!--	.upload-icon {
 				background: url('image_add.png') no-repeat 0 0 !important;

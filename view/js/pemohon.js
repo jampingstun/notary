@@ -1,5 +1,5 @@
-var idpemohon;         // this will be our datastore
-var idgrouppemohon;       // this will be our columnmodel
+var idpemohon;
+var idgrouppemohon;
 var tgldaftar;
 var nama;
 var alamat;
@@ -22,7 +22,7 @@ PemohonDataStore = new Ext.data.Store({
         root: 'results',
         totalProperty: 'total'
       },[ 
-          {name: 'idpemohon', type: 'int', mapping: 'idpemohon'},
+        {name: 'idpemohon', type: 'int', mapping: 'idpemohon'},
         {name: 'nmgrouppemohon', type: 'string', mapping: 'nmgrouppemohon'},
         {name: 'tgldaftarpemohon', type: 'string', mapping: 'tgldaftarpemohon'},
         {name: 'noktp', type: 'string', mapping: 'noktp'},
