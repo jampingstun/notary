@@ -595,8 +595,128 @@ PemohonDataStore = new Ext.data.Store({
         GroupSearchWindow.show();
 
         }
+	//////////////////////////////////////////
+        //                 FILTER FILTER
+       //////////////////////////////////////////////////////////////// 
+        
+    function startAdvancedFilter(){
+      // local vars
+      var GroupFilterForm;
+      var GroupFilterWindow;
+      var dr,sm,status,group;
+
+      dr = new Ext.form.DateField({
+          fieldLabel: 'Dari',
+          maxLength: 10,
+          anchor: '100%',
+          maskRe: /([a-zA-Z0-9\s]+)$/
+            });
+           
+      sm = new Ext.form.DateField({
+          fieldLabel: 'Sampai',
+          maxLength: 10,
+          anchor: '100%',
+          maskRe: /([a-zA-Z0-9\s]+)$/  
+            });
+            
+      status = new Ext.form.ComboBox({ 
+                        fieldLabel: 'Status',
+                        maxLength: 20,
+                        anchor : '100%',
+                        typeAhead: true,
+                        mode: 'local',
+                        triggerAction: 'all',
+                        forceSelection: true,
+                        selectOnFocus:true,
+                        emptyText: '',
+                        store: ['Aktif','Tidak Aktif'] 
+                    });
+      group = new Ext.form.ComboBox({
+          fieldLabel: 'Group Pemohon',
+            store: ComboDataStore,
+            local: true,
+            anchor: '100%',
+            displayField: 'nmgrouppemohon',
+            typeAhead: true,
+            mode: 'local',
+            triggerAction: 'all',
+            forceSelection: true,
+            selectOnFocus:true,
+            emptyText: '',
+            name: 'grouppemohon'
+      });       
+                    
+      GroupFilterForm = new Ext.FormPanel({
+       layout: 'anchor',
+       items: [{
+         layout: 'form',
+         title: 'Tanggal Daftar',
+         border: false,
+         anchor: '100%',
+         items: [dr,sm]
+         },{
+         layout: 'form',
+         title: 'Status',
+         border: false,
+         anchor: '100%',
+         items: [status]
+         },{
+         layout: 'form',
+         title: 'Group',
+         border: false,
+         anchor: '100%',
+         items: [group]
+         }],
+       buttons: [{
+               text: 'Filter',
+               handler: function listFilter(){
+                            // render according to a SQL date format.
+
+                            // change the store parameters
+                                //PemohonDataStore.baseParams = ;
+                            // Cause the datastore to do another query : 
+                             PemohonDataStore.baseParams = {
+                                act: 'filter',
+                                dr: dr.getValue(),
+                                sm : sm.getValue()
+//                                tipedata2: Filterdata2.getValue(),
+//                                data2 : Filterisi2.getValue()
+                                    };
+                            // Cause the datastore to do another query :
+                            PemohonDataStore.reload();
+                        }
+             },{
+               text: 'Reset',
+               handler: function resetFilter(){
+                        // reset the store parameters
+                                PemohonDataStore.baseParams = {
+                                        task: 'LISTING'
+                                };
+                        // Cause the datastore to do another query : 
+                        PemohonDataStore.reload();
+                        GroupFilterWindow.close();
+                    }
+             
+         }]
+     });
+     
+     GroupFilterWindow = new Ext.Window({
+         title: 'Filter Data Group Pemohon',
+         closable:true,
+         width: 250,
+         height: 400,
+         plain:true,
+         layout: 'fit',
+         items: GroupFilterForm
+     });
+     
+ 
+     // once all is done, show the filter window
+        GroupFilterWindow.show();
+
+        }
 	
-		  
+	  
 	var EditorGrid =  new Ext.grid.EditorGridPanel({	    
 		store: PemohonDataStore,
                 title:'Data Pemohon',
@@ -621,6 +741,11 @@ PemohonDataStore = new Ext.data.Store({
                             tooltip: 'Pencarian Data',
                             handler: startAdvancedSearch,  // search function
                             iconCls:'search'               // we'll need to add this to our css
+                        },'-', {
+                            text: 'Filter',
+                            tooltip: 'Filter Data',
+                            handler: startAdvancedFilter,  // search function
+                            iconCls:'filter'               // we'll need to add this to our css
                         },'-', 
 	    
      		{
