@@ -314,7 +314,7 @@ PemohonDataStore = new Ext.data.Store({
         items: 
 		[new Ext.form.Hidden 
 		({
-			name: 'idtransaksi'					
+			name: 'idpemohon'					
 		}),
          {xtype: 'combo',
             fieldLabel: 'Group Pemohon',

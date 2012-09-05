@@ -211,6 +211,7 @@ if($group != ''){
     $nbrows = mysql_num_rows($result);  
 	if($nbrows>0){
 		while($rec = mysql_fetch_assoc($result)){
+                        
                         $arr = $rec;
                         $a = $arr['idgrouppemohon'];
                         $sqla = mysql_query("SELECT nmgrouppemohon FROM grouppemohon WHERE idgrouppemohon='".$a."'");
@@ -232,7 +233,7 @@ if($group != ''){
                         $ar[] = (json_encode($fusion));
 		}
                 $list = implode(",",$ar);
-		echo '({"total":"'.$nbrows.'","results":['.$list.']})';
+                echo '({"total":"'.$nbrows.'","results":['.$list.']})';
 	} else {
 		echo '({"total":"0", "results":""})';
 	}
@@ -244,6 +245,7 @@ else if($_GET['act'] == "show"){
 	$nbrows = mysql_num_rows($result);
 	if($nbrows>0){
 		while($rec = mysql_fetch_assoc($result)){
+                        $rec['tgldaftarpemohon']=codeDate($rec['tgldaftarpemohon']);
                         $arr = $rec;
                         $a = $arr['idgrouppemohon'];
                         $sqla = mysql_query("SELECT nmgrouppemohon FROM grouppemohon WHERE idgrouppemohon='".$a."'");
