@@ -608,6 +608,7 @@ PemohonDataStore = new Ext.data.Store({
       dr = new Ext.form.DateField({
           fieldLabel: 'Dari',
           maxLength: 10,
+          format: 'd-m-Y',
           anchor: '100%',
           maskRe: /([a-zA-Z0-9\s]+)$/
             });
@@ -615,6 +616,7 @@ PemohonDataStore = new Ext.data.Store({
       sm = new Ext.form.DateField({
           fieldLabel: 'Sampai',
           maxLength: 10,
+          format: 'd-m-Y',
           anchor: '100%',
           maskRe: /([a-zA-Z0-9\s]+)$/  
             });

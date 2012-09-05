@@ -186,17 +186,27 @@ if (mysql_num_rows($data)>0) {
 }
 else if((isset($_POST['fil'])) == "filter")
 {
-$dr = reverseDate($_POST['dr']);
-$sm = reverseDate($_POST['sm']);
-$status = statbin($_POST['status']);
-$group = $_POST['group'];
-$qdate ='';
-if($dr != '' && sm != ''){
-    $qdate = "AND tgldaftarpemohon BETWEEN '{$dr}' AND '{$sm}' ";
+$dr = $_POST['dr'];
+$sm = $_POST['sm'];
+$status ='';
+if ($_POST['status'] != ''){
+    $status = statbin($_POST['status']);
 }
 
-    $sql = "SELECT * FROM pemohon join grouppemohon using(idgrouppemohon) WHERE pbpemohon like '%{$status}%' AND nmgrouppemohon like '%{$group}%' ".$qdate;
-  //  echo "SELECT * FROM pemohon join grouppemohon using(idgrouppemohon) WHERE pbpemohon like '%{$status}%' AND nmgrouppemohon like '%{$group}%' ".$qdate;
+$group = $_POST['group'];
+$qdate ='';
+$qgroup ='';
+if($dr != '' && $sm != ''){
+    $dr = reverseDate($_POST['dr']);
+    $sm = reverseDate($_POST['sm']);
+    $qdate = "AND tgldaftarpemohon BETWEEN '{$dr}' AND '{$sm}' ";
+}
+if($group != ''){
+    $qgroup = "AND nmgrouppemohon='{$group}' ";
+}
+
+    $sql = "SELECT * FROM pemohon join grouppemohon using(idgrouppemohon) WHERE pbpemohon like '%{$status}%' ".$qgroup.$qdate;
+ //  echo "SELECT * FROM pemohon join grouppemohon using(idgrouppemohon) WHERE pbpemohon like '%{$status}%' ".$qgroup.$qdate;
     $result = mysql_query($sql) or die(mysql_error());
     $nbrows = mysql_num_rows($result);  
 	if($nbrows>0){

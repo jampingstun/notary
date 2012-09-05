@@ -8,7 +8,7 @@
 //$_POST['data1']='j';
 //$_POST["car"] = 'cari';
 //
-$_POST['status']='tidak aktif';
+$_POST['group']='Individu';
 $_POST['fil']='filter';
 include 'pemohon.php';
 
