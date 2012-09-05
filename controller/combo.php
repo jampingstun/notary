@@ -4,7 +4,7 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
   die("Could not connect: " . mysql_error());
   mysql_select_db("notaris");      
   if($_GET['act'] == 'grouppemohon'){
-        $query = "SELECT * FROM grouppemohon where pb_grouppemohon='1'";
+        $query = "SELECT * FROM grouppemohon where pbgrouppemohon='1'";
 	$result = mysql_query($query);
 	$nbrows = mysql_num_rows($result);	
 	if($nbrows>0){
@@ -18,7 +18,7 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 	}
   }
   else if($_GET['act'] == 'grouptransaksi'){
-      $query = "SELECT * FROM grouptransaksi where pb_grouptransaksi='1'";
+      $query = "SELECT * FROM grouptransaksi where pbgrouptransaksi='1'";
       $result = mysql_query($query);
       $nbrows = mysql_num_rows($result);
       if($nbrows>0){
