@@ -8,10 +8,10 @@
 //$_POST['data1']='j';
 //$_POST["car"] = 'cari';
 //
-//$_POST['pbpemohon']='tidak aktif';
-//$_POST['fil']='filter';
-//include 'pemohon.php';
+$_POST['status']='tidak aktif';
+$_POST['fil']='filter';
+include 'pemohon.php';
 
-$_GET['act']='grouptransaksi';
-include 'combo.php';
+//$_GET['act']='grouptransaksi';
+//include 'combo.php';
 ?>

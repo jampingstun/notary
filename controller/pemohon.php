@@ -184,17 +184,19 @@ if (mysql_num_rows($data)>0) {
 	}
 }
 }
-else if((isset($_POST['act'])) == "filter")
+else if((isset($_POST['fil'])) == "filter")
 {
-$tipe1 = $_POST['tipedata1'];
-$data1 = $_POST['data1'];
-$sql = "SELECT * FROM tbl_index WHERE tipe='pemohon' and kode='".$tipe1."' and isi='".$data1."'";
-$data = mysql_query($sql) or die(mysql_error());
-if (mysql_num_rows($data)>0) {
-    while ($row = mysql_fetch_array($data)) {
-        $id = $row['id'];
-    }
-    $sql = "SELECT * FROM pemohon WHERE idpemohon='".$id."'";
+$dr = reverseDate($_POST['dr']);
+$sm = reverseDate($_POST['sm']);
+$status = statbin($_POST['status']);
+$group = $_POST['group'];
+$qdate ='';
+if($dr != '' && sm != ''){
+    $qdate = "AND tgldaftarpemohon BETWEEN '{$dr}' AND '{$sm}' ";
+}
+
+    $sql = "SELECT * FROM pemohon join grouppemohon using(idgrouppemohon) WHERE pbpemohon like '%{$status}%' AND nmgrouppemohon like '%{$group}%' ".$qdate;
+  //  echo "SELECT * FROM pemohon join grouppemohon using(idgrouppemohon) WHERE pbpemohon like '%{$status}%' AND nmgrouppemohon like '%{$group}%' ".$qdate;
     $result = mysql_query($sql) or die(mysql_error());
     $nbrows = mysql_num_rows($result);  
 	if($nbrows>0){
@@ -224,7 +226,7 @@ if (mysql_num_rows($data)>0) {
 	} else {
 		echo '({"total":"0", "results":""})';
 	}
-}
+
 }
 else if($_GET['act'] == "show"){
      $query = "SELECT * FROM pemohon";
@@ -282,5 +284,14 @@ function reverseDate ($date) {
 	$tab = explode ("-", $date);
 	$r = $tab[2]."/".$tab[1]."/".$tab[0];
 	return $r;
+}
+function statbin($stat){
+    if($stat == 'Aktif'){
+                $stat = '1';
+            }
+            else{
+                $stat = '0';
+            }
+            return $stat;
 }
 ?>

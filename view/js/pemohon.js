@@ -675,10 +675,18 @@ PemohonDataStore = new Ext.data.Store({
                             // change the store parameters
                                 //PemohonDataStore.baseParams = ;
                             // Cause the datastore to do another query : 
+                            var vdr,vsm;
+                            if(dr.getValue() != '' && sm.getValue() != '' ){
+                                vdr = dr.getValue().dateFormat('d-m-Y');
+                                vsm = sm.getValue().dateFormat('d-m-Y');
+                            }
+                            
                              PemohonDataStore.baseParams = {
-                                act: 'filter',
-                                dr: dr.getValue(),
-                                sm : sm.getValue()
+                                fil: 'filter',
+                                dr: vdr,
+                                sm : vsm,
+                                status: status.getValue(),
+                                group: group.getValue()
 //                                tipedata2: Filterdata2.getValue(),
 //                                data2 : Filterisi2.getValue()
                                     };
