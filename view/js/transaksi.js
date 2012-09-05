@@ -724,7 +724,7 @@ PemohonDataStore = new Ext.data.Store({
                         
                         {
 				text:'Cetak',
-				iconCls:'remove',
+				iconCls:'print',
                                 tooltip:'Cetak data yang dipilih',
 				handler: function()
 				{

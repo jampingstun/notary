@@ -26,6 +26,9 @@
             .remove {
                 background-image:url(ext-2.2/fam/delete.gif) !important;
             }
+            .print {
+                background-image:url(ext-2.2/fam/book.png) !important;
+            }
             .search {
                 background-image:url(ext-2.2/fam/application_go.png) !important;
             }
