@@ -715,6 +715,7 @@ PemohonDataStore = new Ext.data.Store({
          closable:true,
          width: 250,
          height: 400,
+         x: 120,
          plain:true,
          layout: 'fit',
          items: GroupFilterForm

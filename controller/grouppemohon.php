@@ -109,13 +109,15 @@ else if((isset($_POST['act'])) == "cari")
        $pbgroup = '';
    }
    
-   $query = "SELECT * FROM grouppemohon WHERE idgrouppemohoon LIKE '%".$idgroup."%'";
+   $query = "SELECT * FROM grouppemohon WHERE idgrouppemohon LIKE '%".$idgroup."%'";
    if($nmgroup != ''){
       $query .= " AND nmgrouppemohon LIKE '%".$nmgroup."%'";
    };
    if($pbgroup != ''){
       $query .= " AND pbgrouppemohon = '".$pbgroup."'";
    };
+   
+ //  echo $query;
    
    $result = mysql_query($query);
    $nbrows = mysql_num_rows($result);  

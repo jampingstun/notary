@@ -319,18 +319,18 @@ PemohonDataStore = new Ext.data.Store({
           maskRe: /([a-zA-Z0-9\s]+)$/  
             });
             
-      SearchPbGroup = new Ext.form.ComboBox({ 
-                        fieldLabel: 'Status',
-                        maxLength: 20,
-                        anchor : '95%',
-                        typeAhead: true,
-                        mode: 'local',
-                        triggerAction: 'all',
-                        forceSelection: true,
-                        selectOnFocus:true,
-                        emptyText: 'Pilih Data...',
-                        store: ['Aktif','Tidak Aktif'] 
-                    });
+//      SearchPbGroup = new Ext.form.ComboBox({ 
+//                        fieldLabel: 'Status',
+//                        maxLength: 20,
+//                        anchor : '95%',
+//                        typeAhead: true,
+//                        mode: 'local',
+//                        triggerAction: 'all',
+//                        forceSelection: true,
+//                        selectOnFocus:true,
+//                        emptyText: 'Pilih Data...',
+//                        store: ['Aktif','Tidak Aktif'] 
+//                    });
           
       GroupSearchForm = new Ext.FormPanel({
        labelAlign: 'top',
@@ -339,7 +339,7 @@ PemohonDataStore = new Ext.data.Store({
        items: [{
          layout: 'form',
          border: false,
-         items: [ SearchNmGroup,SearchPbGroup],
+         items: [ SearchNmGroup],
          buttons: [{
                text: 'Search',
                handler: function listSearch(){
@@ -351,8 +351,8 @@ PemohonDataStore = new Ext.data.Store({
                              PemohonDataStore.baseParams = {
                                 act: 'cari',
                             //    idgrouptransaksi : SearchIdGroup.getValue(),
-                                nmgrouptransaksi : SearchNmGroup.getValue(),
-                                pbgrouptransaksi : SearchPbGroup.getValue()
+                                nmgrouptransaksi : SearchNmGroup.getValue()
+                           //     pbgrouptransaksi : SearchPbGroup.getValue()
                                     };
                             // Cause the datastore to do another query :
                             PemohonDataStore.reload();
@@ -387,7 +387,102 @@ PemohonDataStore = new Ext.data.Store({
         GroupSearchWindow.show();
 
         }
-		  
+//
+
+
+      function startAdvancedFilter(){
+      // local vars
+      
+      var GroupFilterForm;
+      var GroupFilterWindow;
+      var FilterIdGroup;
+      var FilterNmGroup;
+      var FilterPbGroup;
+ 
+//      FilterIdGroup= new Ext.form.TextField({
+//          fieldLabel: 'ID Group',
+//          maxLength: 20,
+//          anchor : '95%',
+//          maskRe: /([a-zA-Z0-9\s]+)$/
+//            });
+ 
+//      FilterNmGroup = new Ext.form.TextField({
+//          fieldLabel: 'Nama Group',
+//          maxLength: 20,
+//          anchor : '95%',    
+//          maskRe: /([a-zA-Z0-9\s]+)$/  
+//            });
+            
+      FilterPbGroup = new Ext.form.ComboBox({ 
+                        fieldLabel: 'Status',
+                        maxLength: 20,
+                        anchor : '95%',
+                        typeAhead: true,
+                        mode: 'local',
+                        triggerAction: 'all',
+                        forceSelection: true,
+                        selectOnFocus:true,
+                        emptyText: 'Pilih Data...',
+                        store: ['Aktif','Tidak Aktif'] 
+                    });
+          
+      GroupFilterForm = new Ext.FormPanel({
+       labelAlign: 'top',
+       bodyStyle: 'padding: 5px',
+       width: 300,
+       items: [{
+         layout: 'form',
+         border: false,
+         items: [ FilterPbGroup],
+         buttons: [{
+               text: 'Filter',
+               handler: function listFilter(){
+                            // render according to a SQL date format.
+
+                            // change the store parameters
+                                //PemohonDataStore.baseParams = ;
+                            // Cause the datastore to do another query : 
+                             PemohonDataStore.baseParams = {
+                                act: 'cari',
+                            //    idgrouptransaksi : FilterIdGroup.getValue(),
+                           //     nmgrouptransaksi : FilterNmGroup.getValue(),
+                                pbgrouptransaksi : FilterPbGroup.getValue()
+                                    };
+                            // Cause the datastore to do another query :
+                            PemohonDataStore.reload();
+                        }
+             },{
+               text: 'Reset',
+               handler: function resetFilter(){
+                        // reset the store parameters
+                                PemohonDataStore.baseParams = {
+                                        task: 'LISTING'
+                                };
+                        // Cause the datastore to do another query : 
+                        PemohonDataStore.reload();
+                        GroupFilterWindow.close();
+                    }
+             }]
+         }]
+     });
+     
+     GroupFilterWindow = new Ext.Window({
+         title: 'Filter Data Group Pemohon',
+         closable:true,
+         width: 200,
+         height: 150,
+         plain:true,
+         layout: 'fit',
+         items: GroupFilterForm
+     });
+     
+ 
+     // once all is done, show the filter window
+        GroupFilterWindow.show();
+
+        }
+
+
 	var EditorGrid =  new Ext.grid.EditorGridPanel({	    
 		store: PemohonDataStore,
                 title:'Data Group Transaksi',
@@ -412,6 +507,11 @@ PemohonDataStore = new Ext.data.Store({
                             tooltip: 'Pencarian Data',
                             handler: startAdvancedSearch,  // search function
                             iconCls:'search'               // we'll need to add this to our css
+                        },'-', {
+                            text: 'Filter',
+                            tooltip: 'Filter Data',
+                            handler: startAdvancedFilter,  // search function
+                            iconCls:'filter'               // we'll need to add this to our css
                         },'-',  
 	    
                         {

@@ -654,6 +654,191 @@ PemohonDataStore = new Ext.data.Store({
 
         }
 		  
+                  
+  	//////////////////////////////////////////
+        //                 FILTER FILTER
+       //////////////////////////////////////////////////////////////// 
+        
+    function startAdvancedFilter(){
+      // local vars
+      var GroupFilterForm;
+      var GroupFilterWindow;
+      var drmsk,smmsk,drsel,smsel,selesai,group,lunas;
+
+      drmsk = new Ext.form.DateField({
+          fieldLabel: 'Dari',
+          maxLength: 10,
+          format: 'd-m-Y',
+          anchor: '100%',
+          maskRe: /([a-zA-Z0-9\s]+)$/
+            });
+           
+      smmsk = new Ext.form.DateField({
+          fieldLabel: 'Sampai',
+          maxLength: 10,
+          format: 'd-m-Y',
+          anchor: '100%',
+          maskRe: /([a-zA-Z0-9\s]+)$/  
+            });
+            
+      drsel = new Ext.form.DateField({
+          fieldLabel: 'Dari',
+          maxLength: 10,
+          format: 'd-m-Y',
+          anchor: '100%',
+          maskRe: /([a-zA-Z0-9\s]+)$/
+            });
+           
+      smsel = new Ext.form.DateField({
+          fieldLabel: 'Sampai',
+          maxLength: 10,
+          format: 'd-m-Y',
+          anchor: '100%',
+          maskRe: /([a-zA-Z0-9\s]+)$/  
+            });
+      
+      selesai = new Ext.form.ComboBox({ 
+                        fieldLabel: 'Status',
+                        maxLength: 20,
+                        anchor : '100%',
+                        typeAhead: true,
+                        mode: 'local',
+                        triggerAction: 'all',
+                        forceSelection: true,
+                        selectOnFocus:true,
+                        emptyText: '',
+                        store: ['Selesai','Belum Selesai'] 
+                    });
+                    
+      lunas = new Ext.form.ComboBox({ 
+                        fieldLabel: 'Status',
+                        maxLength: 20,
+                        anchor : '100%',
+                        typeAhead: true,
+                        mode: 'local',
+                        triggerAction: 'all',
+                        forceSelection: true,
+                        selectOnFocus:true,
+                        emptyText: '',
+                        store: ['Lunas','Belum Lunas'] 
+                    });
+                    
+      group = new Ext.form.ComboBox({
+          fieldLabel: 'Group Transaksi',
+            store: ComboDataStore,
+            local: true,
+            anchor: '100%',
+            displayField: 'nmgrouptr',
+            typeAhead: true,
+            mode: 'local',
+            triggerAction: 'all',
+            forceSelection: true,
+            selectOnFocus:true,
+            emptyText: '',
+            name: 'grouptr'
+      });       
+                    
+      GroupFilterForm = new Ext.FormPanel({
+       layout: 'anchor',
+       items: [{
+         layout: 'form',
+         title: 'Tanggal Masuk',
+         border: false,
+         anchor: '100%',
+         items: [drmsk,smmsk]
+         },{
+         layout: 'form',
+         title: 'Tanggal Selesai',
+         border: false,
+         anchor: '100%',
+         items: [drsel,smsel]
+         },{
+         layout: 'form',
+         title: 'Selesai',
+         border: false,
+         anchor: '100%',
+         items: [selesai]
+         },{
+         layout: 'form',
+         title: 'Pembayaran',
+         border: false,
+         anchor: '100%',
+         items: [lunas]
+         },{
+         layout: 'form',
+         title: 'Group',
+         border: false,
+         anchor: '100%',
+         items: [group]
+         }],
+       buttons: [{
+               text: 'Filter',
+               handler: function listFilter(){
+                            // render according to a SQL date format.
+
+                            // change the store parameters
+                            // PemohonDataStore.baseParams = ;
+                            // Cause the datastore to do another query : 
+                            var vdrmsk,vsmmsk;
+                            if(drmsk.getValue() != '' && smmsk.getValue() != '' ){
+                                vdrmsk = drmsk.getValue().dateFormat('d-m-Y');
+                                vsmmsk = smmsk.getValue().dateFormat('d-m-Y');
+                            }
+                            
+                            var vdrsel,vsmsel;
+                            if(drsel.getValue() != '' && smsel.getValue() != '' ){
+                                vdrsel = drsel.getValue().dateFormat('d-m-Y');
+                                vsmsel = smsel.getValue().dateFormat('d-m-Y');
+                            }
+                             PemohonDataStore.baseParams = {
+                                fil: 'filter',
+                                drmsk: vdrmsk,
+                                smmsk : vsmmsk,
+                                drsel: vdrsel,
+                                smsel : vsmsel,
+                                lunas : lunas.getValue(),
+                                selesai: selesai.getValue(),
+                                group: group.getValue()
+//                                tipedata2: Filterdata2.getValue(),
+//                                data2 : Filterisi2.getValue()
+                                    };
+                            // Cause the datastore to do another query :
+                            PemohonDataStore.reload();
+                        }
+             },{
+               text: 'Reset',
+               handler: function resetFilter(){
+                        // reset the store parameters
+                                PemohonDataStore.baseParams = {
+                                        task: 'LISTING'
+                                };
+                        // Cause the datastore to do another query : 
+                        PemohonDataStore.reload();
+                        GroupFilterWindow.close();
+                    }
+             
+         }]
+     });
+     
+     GroupFilterWindow = new Ext.Window({
+         title: 'Filter Data Group Transaksi',
+         closable:true,
+         width: 300,
+         height: 600,
+         x: 100,
+         plain:true,
+         layout: 'fit',
+         items: GroupFilterForm
+     });
+     
+ 
+     // once all is done, show the filter window
+        GroupFilterWindow.show();
+
+        }
+	
+  
+                  
 	var EditorGrid =  new Ext.grid.GridPanel({	    
 		store: PemohonDataStore,
                 title:'Data Transaksi',
@@ -681,6 +866,11 @@ PemohonDataStore = new Ext.data.Store({
                             tooltip: 'Pencarian Data',
                             handler: startAdvancedSearch,  // search function
                             iconCls:'search'               // we'll need to add this to our css
+                        },'-', {
+                            text: 'Filter',
+                            tooltip: 'Filter Data',
+                            handler: startAdvancedFilter,  // search function
+                            iconCls:'filter'               // we'll need to add this to our css
                         },'-', 
 	    
      		{

@@ -8,10 +8,15 @@
 //$_POST['data1']='j';
 //$_POST["car"] = 'cari';
 //
-$_POST['group']='Individu';
-$_POST['fil']='filter';
-include 'pemohon.php';
+//$_POST['group']='Individu';
+//$_POST['fil']='filter';
+//include 'pemohon.php';
 
-//$_GET['act']='grouptransaksi';
-//include 'combo.php';
+//$_POST['group']='Pengajuan CV';
+$_POST['pbgrouppemohon']='Tidak Aktif';
+//include 'transaksi.php';
+
+
+$_POST['act']='cari';
+include 'grouppemohon.php';
 ?>

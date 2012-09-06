@@ -15,7 +15,6 @@ if (file_exists('controller/'.$fileinc)) {
 } else {
         include 'view/wrapper.php';
 }
-
 ?>
 
 <?php

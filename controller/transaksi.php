@@ -184,15 +184,88 @@ $data2 = $_POST['data2'];
     echo '({"total":"0", "results":""})';
    }
 }
+else if((isset($_POST['fil'])) == "filter")
+{
+$drmsk = $_POST['drmsk'];
+$smmsk = $_POST['smmsk'];
+$drsel = $_POST['drsel'];
+$smsel = $_POST['smsel'];
 
+$lunas ='';
+if ($_POST['lunas'] != ''){
+    $lunas = statbin($_POST['lunas']);
+}
+$selesai ='';
+if ($_POST['selesai'] != ''){
+    $selesai = statbin($_POST['selesai']);
+    
+}
+
+$group = $_POST['group'];
+$qdatemsk ='';
+$qdatesel ='';
+$qgroup ='';
+
+if($drmsk != '' && $smmsk != ''){
+    $drmsk = reverseDate($_POST['drmsk']);
+    $smmsk = reverseDate($_POST['smmsk']);
+    $qdatemsk = "AND t.tglmasuk BETWEEN '{$drmsk}' AND '{$smmsk}' ";
+}
+if($drsel != '' && $smsel != ''){
+    $drsel = reverseDate($_POST['drsel']);
+    $smsel = reverseDate($_POST['smsel']);
+    $qdatesel = "AND t.tglselesai BETWEEN '{$drsel}' AND '{$smsel}' ";
+}
+
+if($group != ''){
+    $qgroup = "AND gt.nmgrouptr='{$group}' ";
+}
+
+    $sql = "SELECT * FROM transaksi t join grouptransaksi gt using(idgrouptr) join tbl_index ti on ti.id=t.idpemohon WHERE ti.kode='noktp' AND t.status like '%{$selesai}%' AND t.sudahbayar like '%{$lunas}%' ".$qgroup.$qdatesel.$qdatemsk;
+ //  echo "SELECT * FROM transaksi t join grouptransaksi using(idgrouptr) join tbl_index ti on ti.id=t.idpemohon WHERE status like '%{$selesai}%' AND sudahbayar like '%{$lunas}%' ".$qgroup.$qdatesel.$qdatemsk;
+    $result = mysql_query($sql) or die(mysql_error());
+    $nbrows = mysql_num_rows($result);  
+   // $rec = mysl_fetch_assoc($result);
+    
+	if($nbrows>0){
+            while($rec = mysql_fetch_assoc($result)){
+                $rec['noktp']=$rec['isi'];
+                if($rec['status'] == '1'){
+                    $rec['status'] = 'Selesai';
+                }
+                else{
+                    $rec['status'] = 'Belum Selesai';
+                }
+
+                if($rec['sudahbayar'] == '1'){
+                    $rec['sudahbayar'] = 'Sudah';
+                }
+                else{
+                    $rec['sudahbayar'] = 'Belum';
+                }
+               $rec['tglmasuk'] = reverseDate($rec['tglmasuk']);  
+               $rec['tglselesai'] = reverseDate($rec['tglselesai']);
+
+                $arr[] = $rec;
+            }
+           
+                
+               $ar[] = (json_encode($arr));
+               $list = implode(",",$ar);
+                echo '({"total":"'.$nbrows.'","results":'.$list.'})';
+	} else {
+		echo '({"total":"0", "results":""})';
+	}
+
+}
 else if($_GET['act'] == "show"){
     $query = "SELECT * FROM transaksi";
     $result = mysql_query($query);
     $nbrows = mysql_num_rows($result);	
 	if($nbrows>0){
 		while($rec = mysql_fetch_assoc($result)){
-			$rec['tglmasuk']=codeDate($rec['tglmasuk']);
-                        $rec['tglselesai']=codeDate($rec['tglselesai']);
+			$rec['tglmasuk']=reverseDate($rec['tglmasuk']);
+                        $rec['tglselesai']=reverseDate($rec['tglselesai']);
 			$arr = $rec;
                         $a = $arr['idgrouptr'];
                         $sqla = mysql_query("SELECT nmgrouptr FROM grouptransaksi WHERE idgrouptr='".$a."'");
@@ -281,4 +354,19 @@ function codeDate ($date) {
 	return $r;
 }
 
+function reverseDate ($date) {
+	$tab = explode ("-", $date);
+	$r = $tab[2]."-".$tab[1]."-".$tab[0];
+	return $r;
+}
+function statbin($stat){
+    if($stat == 'Lunas' || $stat == 'Selesai'){
+                $stat = '1';
+            }
+            else{
+                $stat = '0';
+            }
+            return $stat;
+    
+}
 ?>
