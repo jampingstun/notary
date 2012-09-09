@@ -2,8 +2,8 @@
             <div class="well" style="background-color: white;">
                 <div class="page-header"> 
 <p class="brand" style="margin: 0; margin-left: 35%; margin-top: 25px; padding: 10;">
-<img src="assets/img/icon-add-user.png">&nbsp;&nbsp;<a style="padding-right: 12px;" class="label label-info">&nbsp;&nbsp;
-     Form Data Pemohon <br></a></p>
+<img src="assets/img/icon/glyphicons_333_bell.png">&nbsp;&nbsp;<a style="padding-right: 12px;" class="label label-info">&nbsp;&nbsp;
+     Atur Notifikasi <br></a></p>
 <!--    <a style="padding-right:25px;"> Masukkan Data Identitas Pemohon</a>-->
                 </div>
                 <br/>
@@ -41,3 +41,4 @@
         </div>
     </div>
 </div>
+</div></div><br/>

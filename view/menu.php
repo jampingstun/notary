@@ -14,7 +14,7 @@
             <ul class="nav pull-left">
 <!--        menu kiri        -->
             </ul>
-                <p class="brand" style="margin: 0; margin-left: 31%; margin-top: 3px; padding: 0;"><img src="assets/img/header.png"/></p>
+                <p class="brand" style="margin: 0; margin-left: 22%; margin-top: 3px; padding: 0;"><img src="assets/img/header.png"/></p>
 
                 <ul class="nav pull-right">
 <!--          menu kanan          -->
@@ -41,7 +41,7 @@
                             <li><a href="?op=tpemohon" style="text-decoration: none"><i class="icon-search"></i> &nbsp;lihat pemohon</a></li>     
                         </ul>
                     </div>
-                    <li><a href="#" data-toggle="collapse" data-target="#Mtransaksi"><i class="icon-list-alt"></i>&nbsp;&nbsp;<b>Data Transaksi</b></a></li>
+                    <li><a href="#" data-toggle="collapse" data-target="#Mtransaksi"><i class="icon-book"></i>&nbsp;&nbsp;<b>Data Transaksi</b></a></li>
                     <div  style="background-color: #f5f5f5;   border: 1px solid #eee; border: 1px solid rgba(0, 0, 0, 0.05);" >    
                         <ul id="Mtransaksi" class="submenu collapse in" style="list-style: none;">
                             <li ><a href="?op=transaksi" style="text-decoration: none"><i class="icon-plus-sign"></i>&nbsp; input transaksi</a></li>
@@ -55,11 +55,11 @@
                             <li ><a href="?op=tgrouptransaksi" style="text-decoration: none"><i class="icon-tags"></i> &nbsp;Group Transaksi</a></li>                    
                         </ul>
                     </div>
-                    <li><a href="#" data-toggle="collapse" data-target="#Mgrup"><i class="icon-list-alt"></i>&nbsp;&nbsp;<b>Pemberitahuan</b></a></li>
+                    <li><a href="#" data-toggle="collapse" data-target="#Mgrup"><i class="icon-bell"></i>&nbsp;&nbsp;<b>Pemberitahuan</b></a></li>
                     <div  style="background-color: #f5f5f5;   border: 1px solid #eee; border: 1px solid rgba(0, 0, 0, 0.05);" >    
                         <ul id="Mgrup" class="submenu collapse in" style="list-style: none;">
-                            <li ><a href="?op=tnotifikasi" style="text-decoration: none"><i class="icon-tags"></i>&nbsp; Pemberitahuan</a></li>
-                            <li ><a href="?op=setnotifikasi" style="text-decoration: none"><i class="icon-tags"></i>&nbsp; Seting Pemberitahuan</a></li>                    
+                            <li ><a href="?op=tnotifikasi" style="text-decoration: none"><i class="icon-exclamation-sign"></i>&nbsp; Pemberitahuan</a></li>
+                            <li ><a href="?op=setnotifikasi" style="text-decoration: none"><i class="icon-wrench"></i>&nbsp; Seting Pemberitahuan</a></li>                    
                         </ul>
                     </div>
                 </ul>

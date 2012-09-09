@@ -1,10 +1,7 @@
 <html>
     <body>
-        <div class="span9">
-            <div class="well" style="background-color: white;">
-               HOME
-            </div>
-        </div>
+
+        
         <html>
     <head>
 <link rel="stylesheet" type="text/css" href="ext-2.2/resources/css/ext-all.css"/>
@@ -43,7 +40,7 @@
             <div class="well" style="background-color: white;">
                 <div class="page-header">
 <p class="brand" style="margin: 0; margin-left: 0%; margin-top: 25px; padding: 10;">
-<img src="assets/img/credit.png">&nbsp;&nbsp;<a style="padding-right: 12px;" class="label label-info">&nbsp;&nbsp;
+<img src="assets/img/icon/glyphicons_333_bell.png">&nbsp;&nbsp;<a style="padding-right: 12px;" class="label label-info">&nbsp;&nbsp;
      Notifikasi </a></p>
 <!--                    <small>Data Identitas Group Transaksi</small>-->
                 </div>

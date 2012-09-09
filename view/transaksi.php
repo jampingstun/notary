@@ -2,7 +2,7 @@
             <div class="well" style="background-color: white;">
                 <div class="page-header">
 <p class="brand" style="margin: 0; margin-left: 35%; margin-top: 25px; padding: 10;">
-<img src="assets/img/credit.png">&nbsp;&nbsp;<a style="padding-right: 12px;" class="label label-info" >&nbsp;&nbsp;
+<img src="assets/img/icon/glyphicons_071_book.png">&nbsp;&nbsp;<a style="padding-right: 12px;" class="label label-info" >&nbsp;&nbsp;
      Form Data Transaksi <br></a></p>
                 </div>
                 

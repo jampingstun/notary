@@ -6,7 +6,7 @@
             <ul class="nav pull-left">
 <!--        menu kiri        -->
             </ul>
-                <p class="brand" style="margin: 0; margin-left: 31%; margin-top: 3px; padding: 0;"><img src="assets/img/header.png"/></p>
+                <p class="brand" style="margin: 0; margin-left: 22%; margin-top: 3px; padding: 0;"><img src="assets/img/header.png"/></p>
 
                 <ul class="nav pull-right">
 <!--          menu kanan          -->
