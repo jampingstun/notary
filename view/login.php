@@ -1,4 +1,11 @@
+<style>
+                    body{
+                    background-image: url(./assets/img/bg.jpg);
+                    background-repeat: repeat;
 
+                }
+                
+</style>
 <!-- Navbar ================================================== -->
 <div class="navbar navbar-fixed-top">
       <div class="navbar-inner">
@@ -6,7 +13,7 @@
             <ul class="nav pull-left">
 <!--        menu kiri        -->
             </ul>
-                <p class="brand" style="margin: 0; margin-left: 22%; margin-top: 3px; padding: 0;"><img src="assets/img/header.png"/></p>
+                <p class="brand" style="margin: 0; margin-left: 25%; margin-top: 3px; padding: 0;"><img src="assets/img/header.png"/></p>
 
                 <ul class="nav pull-right">
 <!--          menu kanan          -->
@@ -22,13 +29,18 @@
   <div class="container">
       <div class="content">
           <div class="row">
-              <div class="span3 login" style="margin-left: 35%">
+              <br />
+              <br />
+              <div class="span8" style="margin-left: 0%">
+                <img class="imgberanda" src="assets/img/login.jpg"/>
+              </div>
+              <div class="span1 login" style="margin-left: 5%">
                 <form id="login" method="post">
                     <div class="login-form">
                     <h2>Login</h2>
                         <fieldset>
                             <div>
-                                <input type="text" placeholder="Username" id="username" name="username">
+                                <input  type="text" placeholder="Username" id="username" name="username">
                             </div>
                             <div>
                                 <input style="width:152px;" type="password" placeholder="Password" id="password" name="password">
@@ -39,7 +51,17 @@
                     </div>
                 </form>
               </div>
+              
          </div>
+          
+          
+          
+             <!-- <div style="margin-top: -100px" class="row">
+              <div class="span6" style="margin-left: 28%">
+                <img class="imgberanda" src="assets/img/login.jpg"/>
+              </div> -->
+         </div>     
+          
       </div>
   </div>
       <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>

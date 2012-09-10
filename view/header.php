@@ -44,15 +44,27 @@
                 }
                 .login{
                     background-color: #fff;
-                    padding: 8px 25px;;
+                    padding: 1px 120px;
+                    padding-left: 20px;
+                    padding-right: 180px;
                     margin: 0 -10px;
                     -webkit-border-radius: 10px 10px 10px 10px;
                     -moz-border-radius: 10px 10px 10px 10px;
                     border-radius: 10px 10px 10px 10px;
-                    -webkit-box-shadow: 0 2px 4px rgba(0,0,0,.15);
-                    -moz-box-shadow: 0 2px 4px rgba(0,0,0,.15);
-                    box-shadow: 0 2px 4px rgba(0,0,0,.15);
+                         box-shadow: 0 0 10px rgba(129, 168, 206, 1);
+                    -webkit-box-shadow: 0 0 10px rgba(129, 168, 206, 1);
+                    -moz-box-shadow: 0 0 10px rgba(129, 168, 206, 1);
                 }
+                
+                .imgberanda{
+                    -webkit-border-radius: 10px 10px 10px 10px;
+                   -moz-border-radius: 10px 10px 10px 10px;
+                   border-radius: 10px 10px 10px 10px;
+                    box-shadow: 0 0 10px rgba(129, 168, 206, 1);
+                    -webkit-box-shadow: 0 0 10px rgba(129, 168, 206, 1);
+                    -moz-box-shadow: 0 0 10px rgba(129, 168, 206, 1);
+                }
+                
                 .menu li{
                 }
                 .submenu li{
