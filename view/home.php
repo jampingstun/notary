@@ -37,6 +37,12 @@
 <!--   <div class="container">
     <div class="row">-->
         <div class="span9">
+           
+                <img  class="imgberanda " src="assets/img/home.jpg"/>
+           <br/><br/>
+        </div>
+<br/><br/>
+        <div class="span9">
             <div class="well" style="background-color: white;">
                 <div class="page-header">
 <p class="brand" style="margin: 0; margin-left: 0%; margin-top: 25px; padding: 10;">

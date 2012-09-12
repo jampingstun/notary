@@ -358,7 +358,7 @@ PemohonDataStore = new Ext.data.Store({
 		closable: true,
                 loadMask: true,
                 autoWidth : true,
-                height:350,
+                height: 'auto',
                 layout:'fit',
                 autoScroll:true,
                 stripeRows: true,
